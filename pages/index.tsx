@@ -1,6 +1,7 @@
 import Box from "@/components/basic/box"
 import Button from "@/components/basic/button"
-import Input from "@/components/basic/input"
+import InputCategory from "@/components/basic/inputCategroy"
+import InputDate from "@/components/basic/inputDate"
 import Header from "@/components/header"
 import NavBar from "@/components/navBar"
 import { UserContext } from "@/context/user-context-provider"
@@ -32,10 +33,16 @@ const Index: NextPage<Props> = ({}) => {
 
   // start boilerplate for input change
 
-  const [input, setInput] = useState<string>("")
+  const [input, setDateInput] = useState<string>("")
 
-  function handleInput(newValue: string) {
-    setInput(newValue)
+  function handleDateInput(newValue: string) {
+    setDateInput(newValue)
+  }
+
+  const [categoryInput, setCategoryInput] = useState<string>("")
+
+  function handleCategoryInput(newValue: string) {
+    setCategoryInput(newValue)
   }
 
   // end boilerplate for input change
@@ -45,14 +52,18 @@ const Index: NextPage<Props> = ({}) => {
       <Header currentPage={currentPage} />
       <Box>
         <p>test</p>
-        <Button color={"red"}>Save</Button>
+        <Button color={"purple"}>Save</Button>
         <br />
-        <Input
-          onChange={handleInput}
-          lable="Date"
-          type={"date"}
-          initialValue={input}
-        ></Input>
+        <InputDate onChange={handleDateInput} initialValue={input}></InputDate>
+        <br />
+        <p>{input}</p>
+        <InputCategory
+          categories={toDo.category}
+          onChange={handleCategoryInput}
+          initialValue={categoryInput}
+        ></InputCategory>
+        <br />
+        <p>{categoryInput}</p>
       </Box>
       <NavBar currentPage={currentPage} />
     </div>

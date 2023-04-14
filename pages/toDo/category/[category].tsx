@@ -1,13 +1,25 @@
 import Header from "@/components/header"
 import NavBar from "@/components/navBar"
-import ToDoCategories from "@/components/toDo/toDoCategories"
+import DisplayToDoCategory from "@/components/toDo/displayToDoCategory"
+import { BrowserRouter as Router, Route, useParams } from "react-router-dom"
 import { UserContext } from "@/context/user-context-provider"
 import { NextPage } from "next"
-import { useContext } from "react"
+import { useContext, useEffect, useState } from "react"
+import { useRouter } from "next/dist/client/router"
+import { Task } from "@/types/task"
 
 interface Props {}
 
-const Index: NextPage<Props> = ({}) => {
+const Category: NextPage<Props> = ({}) => {
+  const router = useRouter()
+  const value = router.query.category as string
+
+  let title = value || "All Tasks"
+
+  if (title === "all") {
+    title = "All Tasks"
+  }
+
   // start boilerplate for page //
 
   const {
@@ -31,11 +43,10 @@ const Index: NextPage<Props> = ({}) => {
   return (
     <div>
       <Header currentPage={currentPage} />
-      <ToDoCategories categorys={toDo.category} />
-
+      <DisplayToDoCategory title={title}></DisplayToDoCategory>
       <NavBar currentPage={currentPage} />
     </div>
   )
 }
 
-export default Index
+export default Category
