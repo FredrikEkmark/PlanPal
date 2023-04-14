@@ -1,13 +1,14 @@
 import { NextPage } from "next"
 import Image from "next/image"
+import Box from "../basic/box"
 
 interface Props {}
 
 const RegisterUserGraphic = (props: Props) => {
   return (
     <>
-      <div className="relative inset-y-12 mt-12">
-        <div className="">
+      <div className="relative inset-y-6 mt-10">
+        <div className="mt-10">
           <Image
             src={"/greenBgForIcon.svg"}
             alt={"background image"}
