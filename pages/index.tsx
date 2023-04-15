@@ -56,7 +56,7 @@ const Index: NextPage<Props> = ({}) => {
         <p>test</p>
         <Button color={"purple"}>Save</Button>
         <br />
-        <InputDate onChange={handleDateInput} initialValue={input}></InputDate>
+        <InputDate onChange={handleDateInput} initialValue={input} />
         <br />
         <p>{input}</p>
         <InputCategory

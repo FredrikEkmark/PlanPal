@@ -3,6 +3,7 @@ import Image from "next/image"
 
 interface Props {
   initialValue: string
+  className?: string
   onChange: (value: string) => void
 }
 
@@ -16,7 +17,7 @@ const InputDate = (props: Props) => {
   }
 
   return (
-    <div className="flex p-2 border-2 rounded-[10px]">
+    <div className={`flex p-2 border-2 rounded-[10px] ${props.className}`}>
       <label className="flex text-ourcolors-font" htmlFor="dateInput">
         <Image
           src="/calendar.svg"

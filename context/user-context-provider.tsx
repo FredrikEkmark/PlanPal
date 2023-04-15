@@ -110,10 +110,19 @@ const UserContextProvider: React.FC<UserProviderProps> = ({ children }) => {
       const categoryIndex = toDo.category.findIndex(
         (category) => category.title === categoryTitle
       )
-      setToDo((toDo) => ({
+      const updatedCategory = {
+        ...toDo.category[categoryIndex],
+        toDoList: [...toDo.category[categoryIndex].toDoList, task],
+      }
+      const updatedCategories = [
+        ...toDo.category.slice(0, categoryIndex),
+        updatedCategory,
+        ...toDo.category.slice(categoryIndex + 1),
+      ]
+      setToDo({
         ...toDo,
-        tasks: [...toDo.category[categoryIndex].toDoList, task],
-      }))
+        category: updatedCategories,
+      })
     },
     editTask: (task: Task) => {
       const categoryIndex = toDo.category.findIndex(

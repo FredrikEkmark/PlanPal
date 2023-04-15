@@ -5,6 +5,7 @@ import { Category } from "@/types/category"
 interface Props {
   initialValue: string
   categories: Category[]
+  className?: string
   onChange: (value: string) => void
 }
 
@@ -24,7 +25,7 @@ const InputCategory = (props: Props) => {
   }
 
   return (
-    <div className="flex p-2 border-2 rounded-[10px]">
+    <div className={`flex p-2 border-2 rounded-[10px] ${props.className}`}>
       <label className="flex text-ourcolors-font" htmlFor="categoryInput">
         <Image
           src="/label.svg"

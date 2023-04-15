@@ -3,6 +3,8 @@ import { ReactNode } from "react"
 interface Props {
   children: ReactNode
   color: string
+  className?: string
+  onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
 }
 
 function color(color: string) {
@@ -27,8 +29,10 @@ function color(color: string) {
 
 const Button = (props: Props) => {
   return (
-    <div>
-      <button className={color(props.color)}>{props.children}</button>
+    <div className={`${props.className}`}>
+      <button className={color(props.color)} onClick={props.onClick}>
+        {props.children}
+      </button>
     </div>
   )
 }
