@@ -1,11 +1,10 @@
 import Image from "next/image"
 import TaskBoxCard from "../basic/taskBoxCard"
-import { useContext, useEffect, useState } from "react"
+import { ChangeEvent, useContext, useEffect, useState } from "react"
 import { UserContext } from "@/context/user-context-provider"
-import { Category } from "@/types/category"
 import { Task } from "@/types/task"
-import { time } from "console"
 import Link from "next/link"
+import { title } from "process"
 
 interface Props {
   title: string
@@ -58,6 +57,25 @@ const DisplayToDoCategory = (props: Props) => {
     setUpcomingTasks(upcoming)
   }, [tasks])
 
+  const checkHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    const categoryIndex = toDo.category.findIndex(
+      (category) => category.title === props.title
+    )
+    const originalTask = tasks.find((task) => task.id === event.target.id)
+    if (originalTask) {
+      editTask({
+        title: originalTask?.title,
+        date: originalTask?.date,
+        id: originalTask?.id,
+        categoryId: originalTask.categoryId,
+        description: originalTask?.description,
+        done: event.target.checked,
+      })
+    } else {
+      console.log("ERROR Task in undefined")
+    }
+  }
+
   const displayLateTasks = lateTasks.map((item) => (
     <div className="flex " key={item.id}>
       <div
@@ -67,9 +85,10 @@ const DisplayToDoCategory = (props: Props) => {
         <input
           type="checkbox"
           checked={item.done}
-          id={`task_${item.id}`}
+          id={`${item.id}`}
           name={item.title}
           value={item.id}
+          onChange={(event) => checkHandler(event)}
         />
       </div>
       <Link
@@ -90,9 +109,10 @@ const DisplayToDoCategory = (props: Props) => {
         <input
           type="checkbox"
           checked={item.done}
-          id={`task_${item.id}`}
+          id={`${item.id}`}
           name={item.title}
           value={item.id}
+          onChange={(event) => checkHandler(event)}
         />
       </div>
       <Link
@@ -113,9 +133,10 @@ const DisplayToDoCategory = (props: Props) => {
         <input
           type="checkbox"
           checked={item.done}
-          id={`task_${item.id}`}
+          id={`${item.id}`}
           name={item.title}
           value={item.id}
+          onChange={(event) => checkHandler(event)}
         />
       </div>
       <Link
@@ -133,8 +154,9 @@ const DisplayToDoCategory = (props: Props) => {
         <Image
           src={"/clipBoardWhite.svg"}
           alt={"#"}
-          width={"30"}
-          height={"30"}
+          width="28"
+          height="34"
+          style={{ width: "38px", height: "auto" }}
         ></Image>
         <div>
           <h2 className="mx-2 text-white">{props.title}</h2>

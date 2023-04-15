@@ -1,6 +1,7 @@
 export type Task = {
   date: string
-  id: number
+  id: string
+  categoryId: string
   title: string
   description: string
   done: boolean

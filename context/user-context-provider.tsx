@@ -16,9 +16,9 @@ interface UserContextProps {
   setUsername: (username: string) => void
   setCurrentPage: (currentPage: string) => void
   setToDo: (toDo: ToDo) => void
-  addTask: (categoryIndex: number, task: Task) => void
-  editTask: (categoryIndex: number, task: Task) => void
-  deleteTask: (categoryIndex: number, task: Task) => void
+  addTask: (categoryTitle: string, task: Task) => void
+  editTask: (task: Task) => void
+  deleteTask: (task: Task) => void
   setCalendar: (calendar: Calendar) => void
 }
 
@@ -27,11 +27,13 @@ interface UserContextProps {
 const initialCategory = [
   {
     title: "Fredrik",
+    id: "1",
     color: "",
     toDoList: [
       {
         date: new Date().toISOString().slice(0, 10),
-        id: 1,
+        id: "1",
+        categoryId: "1",
         title: "Test",
         description: "des test",
         done: true,
@@ -40,11 +42,13 @@ const initialCategory = [
   },
   {
     title: "Johanna",
+    id: "2",
     color: "",
     toDoList: [
       {
         date: "2000-12-12",
-        id: 2,
+        id: "2",
+        categoryId: "2",
         title: "Test",
         description: "des test",
         done: false,
@@ -53,11 +57,13 @@ const initialCategory = [
   },
   {
     title: "Linus",
+    id: "3",
     color: "",
     toDoList: [
       {
         date: "2030-12-12",
-        id: 3,
+        id: "3",
+        categoryId: "3",
         title: "Test",
         description: "des test",
         done: false,
@@ -100,13 +106,19 @@ const UserContextProvider: React.FC<UserProviderProps> = ({ children }) => {
     setCurrentPage: (currentPage: string) => setCurrentPage(currentPage),
     setToDo: (toDo: ToDo) => setToDo(toDo),
     setCalendar: (calendar: Calendar) => setCalendar(calendar),
-    addTask: (categoryIndex: number, task: Task) => {
+    addTask: (categoryTitle: string, task: Task) => {
+      const categoryIndex = toDo.category.findIndex(
+        (category) => category.title === categoryTitle
+      )
       setToDo((toDo) => ({
         ...toDo,
         tasks: [...toDo.category[categoryIndex].toDoList, task],
       }))
     },
-    editTask: (categoryIndex: number, task: Task) => {
+    editTask: (task: Task) => {
+      const categoryIndex = toDo.category.findIndex(
+        (category) => category.id === task.categoryId
+      )
       setToDo((toDo) => {
         const updatedToDoList = toDo.category[categoryIndex].toDoList.map(
           (existingTask) => {
@@ -128,7 +140,10 @@ const UserContextProvider: React.FC<UserProviderProps> = ({ children }) => {
         }
       })
     },
-    deleteTask: (categoryIndex: number, task: Task) => {
+    deleteTask: (task: Task) => {
+      const categoryIndex = toDo.category.findIndex(
+        (category) => category.id === task.categoryId
+      )
       setToDo((toDo) => {
         const updatedToDoList = toDo.category[categoryIndex].toDoList.filter(
           (existingTask) => existingTask.id !== task.id // filter out task to delete
