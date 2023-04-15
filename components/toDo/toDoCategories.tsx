@@ -9,8 +9,11 @@ interface Props {
 const ToDoCategories = (props: Props) => {
   const [categoryList, setCategoryList] = useState(props.categorys)
 
+  const [now, setNow] = useState(new Date().toISOString().slice(0, 10))
+
   useEffect(() => {
     // Update the state with the new category list
+    setNow(new Date().toISOString().slice(0, 10)) // Get today's date in the format YYYY-MM-DD
     setCategoryList(props.categorys)
   }, [props.categorys])
 
@@ -21,7 +24,11 @@ const ToDoCategories = (props: Props) => {
     >
       {categories.title}
       <br />
-      {categories.toDoList.length}
+      {
+        categories.toDoList.filter(
+          (task) => task.date >= now || task.done === false
+        ).length
+      }
     </CategoryBox>
   ))
 
@@ -32,7 +39,11 @@ const ToDoCategories = (props: Props) => {
         <CategoryBox href="/toDo/category/all">
           All Tasks <br />
           {props.categorys.reduce(
-            (total, category) => total + category.toDoList.length,
+            (total, category) =>
+              total +
+              category.toDoList.filter(
+                (task) => task.date >= now || task.done === false
+              ).length,
             0
           )}
         </CategoryBox>

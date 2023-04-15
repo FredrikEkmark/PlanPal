@@ -48,7 +48,7 @@ const DisplayToDoCategory = (props: Props) => {
   useEffect(() => {
     const now = new Date().toISOString().slice(0, 10) // Get today's date in the format YYYY-MM-DD
 
-    const late = tasks.filter((task) => task.date < now)
+    const late = tasks.filter((task) => task.date < now && task.done === false)
     const today = tasks.filter((task) => task.date === now)
     const upcoming = tasks.filter((task) => task.date > now)
 
