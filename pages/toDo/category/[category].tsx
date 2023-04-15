@@ -36,7 +36,9 @@ const Category: NextPage<Props> = ({}) => {
     setCalendar,
   } = useContext(UserContext)
 
-  setCurrentPage("todo") // set name of folder so navBar know where you are
+  useEffect(
+    () => setCurrentPage("todo") // set name of folder so navBar know where you are
+  )
 
   // end boilerplate for page //
 

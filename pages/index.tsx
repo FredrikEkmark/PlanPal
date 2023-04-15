@@ -27,7 +27,9 @@ const Index: NextPage<Props> = ({}) => {
     setCalendar,
   } = useContext(UserContext)
 
-  setCurrentPage("home") // set name of folder so navBar know where you are
+  useEffect(
+    () => setCurrentPage("home") // set name of folder so navBar know where you are
+  )
 
   // end boilerplate for page //
 

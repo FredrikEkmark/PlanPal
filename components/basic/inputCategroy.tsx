@@ -26,7 +26,13 @@ const InputCategory = (props: Props) => {
   return (
     <div className="flex p-2 border-2 rounded-[10px]">
       <label className="flex text-ourcolors-font" htmlFor="categoryInput">
-        <Image src="/label.svg" alt={"#"} width={"20"} height={"20"}></Image>
+        <Image
+          src="/label.svg"
+          alt={"#"}
+          width={"18"}
+          height={"18"}
+          style={{ width: "auto", height: "auto" }}
+        ></Image>
         <p className="px-1"></p>
         {"Category"}:{" "}
       </label>

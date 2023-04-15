@@ -15,8 +15,9 @@ const NavBar = (props: Props) => {
             <Image
               src={"/homeWhite.svg"}
               alt={"#"}
-              width={"40"}
-              height={"40"}
+              width={"25"}
+              height={"24"}
+              style={{ width: "auto", height: "38px" }}
             ></Image>
           </div>
         ) : (
@@ -24,8 +25,9 @@ const NavBar = (props: Props) => {
             <Image
               src={"/home.svg"}
               alt={"#"}
-              width={"40"}
-              height={"40"}
+              width={"25"}
+              height={"24"}
+              style={{ width: "auto", height: "38px" }}
             ></Image>
           </div>
         )}
@@ -36,8 +38,9 @@ const NavBar = (props: Props) => {
             <Image
               src={"/calendarWhite.svg"}
               alt={"#"}
-              width={"40"}
-              height={"40"}
+              width={"18"}
+              height={"18"}
+              style={{ width: "auto", height: "38px" }}
             ></Image>
           </div>
         ) : (
@@ -45,8 +48,9 @@ const NavBar = (props: Props) => {
             <Image
               src={"/calendar.svg"}
               alt={"#"}
-              width={"40"}
-              height={"40"}
+              width={"18"}
+              height={"18"}
+              style={{ width: "auto", height: "38px" }}
             ></Image>
           </div>
         )}
@@ -57,8 +61,9 @@ const NavBar = (props: Props) => {
             <Image
               src={"/checkCircleWhite.svg"}
               alt={"#"}
-              width={"40"}
-              height={"40"}
+              width={"24"}
+              height={"24"}
+              style={{ width: "auto", height: "38px" }}
             ></Image>
           </div>
         ) : (
@@ -66,8 +71,9 @@ const NavBar = (props: Props) => {
             <Image
               src={"/checkCircle.svg"}
               alt={"#"}
-              width={"40"}
-              height={"40"}
+              width={"24"}
+              height={"24"}
+              style={{ width: "auto", height: "38px" }}
             ></Image>
           </div>
         )}
