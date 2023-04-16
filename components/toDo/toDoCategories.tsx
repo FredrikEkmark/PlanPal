@@ -1,6 +1,7 @@
 import { Category } from "@/types/category"
 import CategoryBox from "../basic/categoryBox"
 import { useEffect, useState } from "react"
+import Image from "next/image"
 
 interface Props {
   categorys: Category[]
@@ -22,13 +23,15 @@ const ToDoCategories = (props: Props) => {
       href={`/toDo/category/${categories.title}`}
       key={categories.title}
     >
-      {categories.title}
-      <br />
-      {
-        categories.toDoList.filter(
-          (task) => task.date >= now || task.done === false
-        ).length
-      }
+      <h2>{categories.title}</h2>
+      <p className="text-ourcolors-green">
+        {
+          categories.toDoList.filter(
+            (task) => task.date >= now || task.done === false
+          ).length
+        }{" "}
+        Tasks
+      </p>
     </CategoryBox>
   ))
 
@@ -36,19 +39,33 @@ const ToDoCategories = (props: Props) => {
     <div className="m-[5%] ">
       <h2>Lists</h2>
       <div className="flex flex-wrap justify-between">
-        <CategoryBox href="/toDo/category/all">
-          All Tasks <br />
-          {props.categorys.reduce(
-            (total, category) =>
-              total +
-              category.toDoList.filter(
-                (task) => task.date >= now || task.done === false
-              ).length,
-            0
-          )}
+        <CategoryBox className="" href="/toDo/category/all">
+          <h2>All Tasks</h2>
+          <p className="text-ourcolors-green">
+            {props.categorys.reduce(
+              (total, category) =>
+                total +
+                category.toDoList.filter(
+                  (task) => task.date >= now || task.done === false
+                ).length,
+              0
+            )}{" "}
+            Tasks
+          </p>
         </CategoryBox>
         {categoryCards}
-        <CategoryBox href="/toDo/addCategory">New List</CategoryBox>
+        <CategoryBox href="/toDo/addCategory">
+          <div className="flex">
+            <Image
+              className="pr-2"
+              src={"/plusGreen.svg"}
+              alt={"#"}
+              height={"21"}
+              width={"21"}
+            ></Image>
+            New List
+          </div>
+        </CategoryBox>
       </div>
     </div>
   )
