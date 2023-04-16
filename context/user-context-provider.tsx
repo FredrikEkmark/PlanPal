@@ -26,7 +26,7 @@ interface UserContextProps {
 
 const initialCategory = [
   {
-    title: "Fredrik",
+    title: "Skola",
     id: "1",
     color: "",
     toDoList: [
@@ -41,7 +41,7 @@ const initialCategory = [
     ],
   },
   {
-    title: "Johanna",
+    title: "Fritid",
     id: "2",
     color: "",
     toDoList: [
@@ -56,7 +56,7 @@ const initialCategory = [
     ],
   },
   {
-    title: "Linus",
+    title: "Övrigt",
     id: "3",
     color: "",
     toDoList: [
