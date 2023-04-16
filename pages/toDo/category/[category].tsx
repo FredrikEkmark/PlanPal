@@ -7,6 +7,8 @@ import { NextPage } from "next"
 import { useContext, useEffect, useState } from "react"
 import { useRouter } from "next/dist/client/router"
 import { Task } from "@/types/task"
+import AddTaskButton from "@/components/basic/addTaskButton"
+import Link from "next/link"
 
 interface Props {}
 
@@ -46,6 +48,9 @@ const Category: NextPage<Props> = ({}) => {
     <div>
       <Header currentPage={currentPage} />
       <DisplayToDoCategory title={title}></DisplayToDoCategory>
+      <Link href={"/toDo/addTask"}>
+        <AddTaskButton></AddTaskButton>
+      </Link>
       <NavBar currentPage={currentPage} />
     </div>
   )
