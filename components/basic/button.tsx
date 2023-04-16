@@ -29,11 +29,12 @@ function color(color: string) {
 
 const Button = (props: Props) => {
   return (
-    <div className={`${props.className}`}>
-      <button className={color(props.color)} onClick={props.onClick}>
-        {props.children}
-      </button>
-    </div>
+    <button
+      className={`${color(props.color)} ${props.className}`}
+      onClick={props.onClick}
+    >
+      {props.children}
+    </button>
   )
 }
 
