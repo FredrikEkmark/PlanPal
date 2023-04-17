@@ -1,26 +1,56 @@
-import Image from "next/image"
-import { useState } from "react"
+import React from "react";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
-interface Props {
-  currentPage: string
-}
+const Header: React.FC = () => {
+  const router = useRouter();
+  const isActive: (pathname: string) => boolean = (pathname) =>
+    router.pathname === pathname;
 
-const Header = (props: Props) => {
-  return (
-    <div className="bg-white h-12 w-[100%] flex items-center justify-between px-[5%]">
-      <Image src={"/hamburger.svg"} alt={"#"} width="33" height="21"></Image>
-      <h1 className="text-black ">
-        {props.currentPage.charAt(0).toUpperCase() + props.currentPage.slice(1)}
-      </h1>
-      <Image
-        src={"/user.svg"}
-        alt={"#"}
-        width="21"
-        height="22"
-        style={{ width: "auto", height: "30px" }}
-      ></Image>
+  let left = (
+    <div className="left">
+      <Link href="/">
+        <a className="bold" data-active={isActive("/")}>
+          Feed
+        </a>
+      </Link>
+      <style jsx>{`
+        .bold {
+          font-weight: bold;
+        }
+
+        a {
+          text-decoration: none;
+          color: #000;
+          display: inline-block;
+        }
+
+        .left a[data-active="true"] {
+          color: gray;
+        }
+
+        a + a {
+          margin-left: 1rem;
+        }
+      `}</style>
     </div>
-  )
-}
+  );
 
-export default Header
+  let right = null;
+
+  return (
+    <nav>
+      {left}
+      {right}
+      <style jsx>{`
+        nav {
+          display: flex;
+          padding: 2rem;
+          align-items: center;
+        }
+      `}</style>
+    </nav>
+  );
+};
+
+export default Header;
