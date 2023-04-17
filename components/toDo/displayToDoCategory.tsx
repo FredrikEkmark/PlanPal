@@ -161,7 +161,7 @@ const DisplayToDoCategory = (props: Props) => {
         <div>
           <h2 className="mx-2 text-white">{props.title}</h2>
           <p className="mx-2 text-white">
-            {todayTasks.length + upcomingTasks.length} tasks
+            {todayTasks.length + upcomingTasks.length + lateTasks.length} tasks
           </p>
         </div>
       </div>
