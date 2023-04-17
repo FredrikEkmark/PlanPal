@@ -39,7 +39,7 @@ const StyleGuide: NextPage<Props> = ({}) => {
         <CategoryBox href="">Text</CategoryBox>
       </div>
       <div className="flex flex-col items-center w-full my-4">
-        <h4>CategoryBox</h4>
+        <h4>Button</h4>
         <Button className="m-2" color="red">
           Text
         </Button>
