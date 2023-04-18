@@ -5,7 +5,7 @@ import { PrismaClient } from "@prisma/client"
 
 type CategoryBody = {
   title: string
-  color: string | undefined
+  color: string | null
 }
 
 type CategoryImport = {
@@ -44,28 +44,33 @@ async function main(
       const category = await prisma.category.findUnique({
         where: { id: id },
       })
-
       if (!category) {
         return "ERROR"
       }
-
       if (category.userId !== user.id) {
         return "NOT AUTHORIZED"
       }
       return category
     }
     case "POST": {
-      if (!body) {
-        return "Body not provided"
+      if (!body?.title) {
+        return `Title is required in Body ${body}`
       }
-
       const postBody = {
-        title: body.title,
-        color: body.color,
-        userId: user.id,
+        data: {
+          title: body.title,
+          color: body.color,
+          userId: user.id,
+        },
       }
-
       const category = await prisma.category.create(postBody)
+      if (!category) {
+        return "ERROR"
+      }
+      return category
+    }
+    default: {
+      return `Method ${method} Not Allowed`
     }
   }
 }
@@ -91,9 +96,15 @@ export default async function handler(
     .split(":")
 
   const { id } = req.query
-  const { body } = req.body
+  const body = req.body
 
-  const result = await main(id as string, email, password, body, req.method)
+  const result = await main(
+    id as string,
+    email,
+    password,
+    body as CategoryBody,
+    req.method
+  )
   if (result) {
     res.status(200).json({ result: JSON.parse(JSON.stringify(result)) })
     await prisma.$disconnect()
