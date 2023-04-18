@@ -1,36 +1,44 @@
-// Query like this: api/userCategories?id=<USERID>  and with an Auth header username: email, password: password
+// Query like this: /api/categoryTasks?userId=<USERID>&categoryId=<CATEGORYID>  and with an Auth header username: email, password: password
 
 import type { NextApiRequest, NextApiResponse } from "next"
 import { PrismaClient } from "@prisma/client"
 
-type CategoryImport = {
+type TaskImport = {
   id: string
   title: string
-  color: string
-  userId: string
+  description: string
+  date: Date
+  done: Boolean
+  categoryId: string
+  createdAt: Date
 }
 
 type Data = {
-  result: CategoryImport[] | string
+  result: TaskImport[] | string
 }
 
 const prisma = new PrismaClient()
 
-async function main(id: string, email: string, password: string) {
+async function main(
+  categoryId: string,
+  userId: string,
+  email: string,
+  password: string
+) {
   const user = await prisma.user.findUnique({
-    where: { id: id },
+    where: { id: userId },
   })
 
   if (!(user?.password === password && user?.email === email)) {
     return "NOT AUTHORIZED"
   }
 
-  const categories = await prisma.category.findMany({
-    where: { userId: id },
+  const tasks = await prisma.task.findMany({
+    where: { categoryId: categoryId },
   })
 
-  if (categories) {
-    return categories
+  if (tasks) {
+    return tasks
   }
 
   return "ERROR"
@@ -56,14 +64,19 @@ export default async function handler(
     .toString()
     .split(":")
 
-  const { id } = req.query
+  const { userId, categoryId } = req.query
 
-  const result = await main(id as string, email, password)
+  const result = await main(
+    categoryId as string,
+    userId as string,
+    email,
+    password
+  )
   if (result) {
     res.status(200).json({ result: JSON.parse(JSON.stringify(result)) })
     await prisma.$disconnect()
   } else {
-    res.status(500).json({ result: "No categories found" })
+    res.status(500).json({ result: "No tasks found" })
     await prisma.$disconnect()
   }
 }
