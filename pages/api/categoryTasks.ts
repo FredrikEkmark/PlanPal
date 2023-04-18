@@ -1,4 +1,8 @@
-// Query like this: /api/categoryTasks?userId=<USERID>&categoryId=<CATEGORYID>  and with an Auth header username: email, password: password
+/* 
+Query like this:
+URL: /api/categoryTasks?userId=<USERID>&categoryId=<CATEGORYID>  
+AUTH Basic: username: email, password: password 
+*/
 
 import type { NextApiRequest, NextApiResponse } from "next"
 import { PrismaClient } from "@prisma/client"

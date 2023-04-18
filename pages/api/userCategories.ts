@@ -1,4 +1,8 @@
-// Query like this: api/userCategories?id=<USERID>  and with an Auth header username: email, password: password
+/* 
+Query like this: 
+URL: api/userCategories?userId=<USERID>  
+AUTH Basic: username: email, password: password 
+*/
 
 import type { NextApiRequest, NextApiResponse } from "next"
 import { PrismaClient } from "@prisma/client"
@@ -56,9 +60,9 @@ export default async function handler(
     .toString()
     .split(":")
 
-  const { id } = req.query
+  const { userId } = req.query
 
-  const result = await main(id as string, email, password)
+  const result = await main(userId as string, email, password)
   if (result) {
     res.status(200).json({ result: JSON.parse(JSON.stringify(result)) })
     await prisma.$disconnect()

@@ -1,4 +1,8 @@
-// Query like this: /api/login and with an Auth header username: email, password: password
+/* 
+Query like this: 
+URL: /api/login
+AUTH Basic: username: email, password: password 
+*/
 
 import type { NextApiRequest, NextApiResponse } from "next"
 import { PrismaClient, User } from "@prisma/client"
