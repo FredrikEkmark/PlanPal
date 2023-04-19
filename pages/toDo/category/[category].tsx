@@ -25,8 +25,8 @@ const Category: NextPage<Props> = ({}) => {
   // start boilerplate for page //
 
   const {
-    username,
-    setUsername,
+    user,
+    setUser,
     currentPage,
     setCurrentPage,
     toDo,

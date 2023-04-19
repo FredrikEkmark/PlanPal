@@ -12,8 +12,8 @@ interface Props {
 
 const DisplayToDoCategory = (props: Props) => {
   const {
-    username,
-    setUsername,
+    user,
+    setUser,
     currentPage,
     setCurrentPage,
     toDo,
