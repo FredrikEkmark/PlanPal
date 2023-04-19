@@ -1,4 +1,14 @@
-// Query like this:   and with an Auth header username: email, password: password
+/*
+Query like this: 
+URL: /api/category/category?id=<CATEGORYID>  
+AUTH Basic: username: email, password: password
+BODY: {
+  "title": string,
+  "color": string | null
+}
+METHODE: GET, POST, PATCH, DELETE
+COMMENT: POST Dosn't require ?id=<CATEGORYID>, GET, DELETE Dosn't require BODY
+*/
 
 import type { NextApiRequest, NextApiResponse } from "next"
 import { PrismaClient } from "@prisma/client"
