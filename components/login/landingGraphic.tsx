@@ -6,19 +6,28 @@ interface Props {}
 const LandingGraphic = (props: Props) => {
   return (
     <>
-      <div className=" flex justify-center items-center mt-10">
+      <div className="relative mt-10 inset-y-6">
         <div className="mt-10">
           <Image
-            src={"/logo.svg"}
-            alt={"#"}
-            width={"200"}
-            height={"85"}
-            className={""}
+            src={"/greenBgForIcon.svg"}
+            alt={"background image"}
+            width={"180"}
+            height={"150"}
+            className={
+              "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 mt-6"
+            }
+          ></Image>
+
+          <Image
+            src={"/logoYellow.svg"}
+            alt={"planpal icon yellow"}
+            width={"169"}
+            height={"150"}
+            className={
+              "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 mt-6"
+            }
           ></Image>
         </div>
-      </div>
-      <div className="flex justify-center font-semibold text-2xl font mt-7 ">
-        <h1>Planning made easy!</h1>
       </div>
     </>
   )

@@ -1,6 +1,7 @@
-import { useState } from "react"
-import Box from "../basic/box"
+import { NextPage } from "next"
 import apply from "assert"
+
+interface Props {}
 
 const RegisterUserCard = ({}) => {
   return (
