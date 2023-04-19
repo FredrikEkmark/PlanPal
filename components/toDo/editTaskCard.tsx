@@ -41,7 +41,7 @@ const EditTaskCard = (props: Props) => {
 
   let originalDes
 
-  if (!originalTask.description) {
+  if (!originalTask.description || originalTask.description == null) {
     originalDes = ""
   } else {
     originalDes = originalTask.description
