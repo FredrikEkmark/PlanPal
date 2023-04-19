@@ -16,7 +16,9 @@ export async function getServerSideProps() {
   headers.set("Authorization", `Basic ${btoa(`${username}:${password}`)}`)
 
   const res = await fetch(
-    `/api/user/getFullUserData?id=${"clglz54lr0000vq0xpjzkd8jy"}`,
+    `${
+      process.env.URL
+    }/api/user/getFullUserData?id=${"clglz54lr0000vq0xpjzkd8jy"}`,
     {
       headers,
       credentials: "include",
