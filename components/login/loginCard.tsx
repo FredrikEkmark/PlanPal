@@ -6,10 +6,20 @@ import Button from "../basic/button"
 interface Props {}
 
 const LoginCard = ({}) => {
+  // FUNKTIONALLITET HÄR //
+
   return (
-    <>
-      <div className="flex items-center justify-center mt-10 ">
-        <div className="mt-10">
+    <div className=" bg-[#FBEE7B] w-[354px] h-[598px]">
+      <div className="fixed right-[-12%] left-[85.6%] top-[2.7%];">
+        <Image
+          src={"/greenStar.svg"}
+          alt={"#"}
+          width={"100"}
+          height={"100"}
+        ></Image>
+      </div>
+      <div className="flex items-center justify-center">
+        <div className="mt-20">
           <Image
             src={"/logo.svg"}
             alt={"#"}
@@ -24,15 +34,15 @@ const LoginCard = ({}) => {
 
       <div className="mt-10 ">
         <input
-          className="box-border border-b-2 border-[none] border-solid;"
+          className=" bg-transparent left-4 gap-2.5 absolute w-[90%] justify-center box-border border-b-2 border-[none] border-solid;"
           type="Email"
           placeholder="Email"
         />
       </div>
 
-      <div>
+      <div className="mt-20">
         <input
-          className="box-border border-b-2 border-[none] border-solid;"
+          className=" bg-transparent left-4 gap-2.5 absolute w-[90%] justify-center box-border border-b-2 border-[none] border-solid;"
           type="Password"
           placeholder="Password"
         />
@@ -45,7 +55,7 @@ const LoginCard = ({}) => {
         Log in with email
       </Button>
 
-      <div className="mt-40 ">
+      <div className=" mt-60">
         <p className="text-center ">
           No account?
           <Link
@@ -56,7 +66,24 @@ const LoginCard = ({}) => {
           </Link>
         </p>
       </div>
-    </>
+
+      <div className="fixed left-[0.53%] right-[73.07%] bottom-[0.28%] top-[84,71%];  ">
+        <Image
+          src={"/greenStar.svg"}
+          alt={"#"}
+          width={"100"}
+          height={"100"}
+        ></Image>
+      </div>
+      <div className=" fixed right-[-12%] left-[65.6%] top-[80.7%] relative;">
+        <Image
+          src={"/purpleSymbol.svg"}
+          alt={"#"}
+          width={"140"}
+          height={"140"}
+        ></Image>
+      </div>
+    </div>
   )
 }
 
