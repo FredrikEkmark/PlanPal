@@ -13,7 +13,7 @@ interface UserContextProps {
   user: User
   currentPage: string
   toDo: ToDo
-  calendar: Calendar
+  calendar: Calendar | undefined
   setUser: (user: User) => void
   setCurrentPage: (currentPage: string) => void
   setToDo: (toDo: ToDo) => void
@@ -26,10 +26,10 @@ interface UserContextProps {
 // Default
 
 const initialUser = {
-  id: "",
-  email: "",
-  password: "",
-  firstName: "",
+  id: "clglz54lr0000vq0xpjzkd8jy",
+  email: "fredrik@gmail.com",
+  password: "fasfsafsafsafafsa",
+  firstName: "Fredrik",
   lastName: "",
 }
 
@@ -85,7 +85,7 @@ const initialUserContext: UserContextProps = {
   user: initialUser,
   currentPage: "",
   toDo: { category: initialCategory },
-  calendar: { id: 0 },
+  calendar: { id: "1" },
   setUser: () => {},
   setCurrentPage: () => {},
   setToDo: () => {},
@@ -103,7 +103,7 @@ const UserContextProvider: React.FC<UserProviderProps> = ({ children }) => {
   const [toDo, setToDo] = useState<ToDo>({
     category: initialCategory,
   }) // This should be changed to Database later
-  const [calendar, setCalendar] = useState<Calendar>({ id: 0 })
+  const [calendar, setCalendar] = useState<Calendar>({ id: "1" })
 
   // Connect
   const contextValue: UserContextProps = {

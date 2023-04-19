@@ -5,10 +5,17 @@ AUTH Basic: username: email, password: password
 */
 
 import type { NextApiRequest, NextApiResponse } from "next"
-import { PrismaClient, User } from "@prisma/client"
+import { PrismaClient } from "@prisma/client"
+
+type UserImport = {
+  id: string
+  title: string
+  color: string | undefined
+  userId: string
+}
 
 type Data = {
-  result: User | string
+  result: UserImport | string
 }
 
 const prisma = new PrismaClient()
@@ -43,9 +50,9 @@ export default async function handler(
     .toString()
     .split(":")
 
-  const resualt = await main(email, password)
-  if (resualt) {
-    res.status(200).json({ result: resualt })
+  const result = await main(email, password)
+  if (result) {
+    res.status(200).json({ result: JSON.parse(JSON.stringify(result)) })
     await prisma.$disconnect()
   } else {
     res.status(500).json({ result: "No user found" })
