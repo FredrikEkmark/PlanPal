@@ -39,7 +39,7 @@ const EditTaskCard = (props: Props) => {
     setTitleInput(newValue)
   }
 
-  const [descriptionInput, setDescriptionInput] = useState<string>(
+  const [descriptionInput, setDescriptionInput] = useState(
     originalTask.description
   )
 
