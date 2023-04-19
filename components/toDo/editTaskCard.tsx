@@ -39,14 +39,7 @@ const EditTaskCard = (props: Props) => {
     setTitleInput(newValue)
   }
 
-  let originalDes
-
-  if (!originalTask.description || originalTask.description == null) {
-    originalDes = ""
-  } else {
-    originalDes = originalTask.description
-  }
-  const [descriptionInput, setDescriptionInput] = useState<string>(originalDes)
+  const [descriptionInput, setDescriptionInput] = useState<string>("")
 
   function handleDescriptionInput(newValue: string) {
     setDescriptionInput(newValue)
