@@ -1,5 +1,5 @@
-import LandingGraphic from "@/components/login/landingGraphic"
-import RegisterUserCard from "@/components/login/registerUserCard"
+import LandingGraphic from "@/components/signup/landingGraphic"
+import RegisterUserCard from "@/components/signup/registerUserCard"
 import { NextPage } from "next"
 
 interface Props {}
