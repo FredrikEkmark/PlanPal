@@ -14,8 +14,8 @@ interface Props {}
 
 const AddTaskCard = ({}) => {
   const {
-    username,
-    setUsername,
+    user,
+    setUser,
     currentPage,
     setCurrentPage,
     toDo,
