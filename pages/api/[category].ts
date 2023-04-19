@@ -69,6 +69,68 @@ async function main(
       }
       return category
     }
+    case "PATCH": {
+      if (id == undefined) {
+        return "Id not provided"
+      }
+      const category = await prisma.category.findUnique({
+        where: { id: id },
+      })
+      if (!category) {
+        return "ERROR"
+      }
+      if (category.userId !== user.id) {
+        return "NOT AUTHORIZED"
+      }
+      let title = ""
+      let color: string | null = null
+
+      if (!body?.title) {
+        title = category.title
+      } else {
+        title = body.title
+      }
+      if (!body?.color) {
+        color = category.color
+      } else {
+        color = body.color
+      }
+
+      const postBody = {
+        where: { id: id },
+        data: {
+          title: title,
+          color: color,
+          userId: category.userId,
+        },
+      }
+      const updatedCategory = await prisma.category.update(postBody)
+      if (!updatedCategory) {
+        return "ERROR"
+      }
+      return updatedCategory
+    }
+    case "DELETE": {
+      if (id == undefined) {
+        return "Id not provided"
+      }
+      const category = await prisma.category.findUnique({
+        where: { id: id },
+      })
+      if (!category) {
+        return "ERROR"
+      }
+      if (category.userId !== user.id) {
+        return "NOT AUTHORIZED"
+      }
+      const deleteCategory = await prisma.category.delete({
+        where: { id: id },
+      })
+      if (!deleteCategory) {
+        return "ERROR"
+      }
+      return deleteCategory
+    }
     default: {
       return `Method ${method} Not Allowed`
     }
