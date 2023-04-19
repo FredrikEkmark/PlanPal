@@ -40,7 +40,10 @@ async function main(
   body: UserBody | undefined,
   method: string | undefined
 ) {
-  if (authUser !== "1" && authPassword !== "1") {
+  if (
+    authUser !== process.env.CREATE_USER &&
+    authPassword !== process.env.CREATE_USER_PASSWORD
+  ) {
     return "NOT AUTHORIZED"
   }
 
