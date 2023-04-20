@@ -63,7 +63,7 @@ const EditTaskCard = (props: Props) => {
 
   function handleSubmit() {
     const categoryId = toDo.category.find(
-      (category) => category.title === categoryInput
+      (category) => category.id === originalTask.categoryId
     )?.id
     if (categoryId === undefined) {
       return "Error no such category"
@@ -98,12 +98,6 @@ const EditTaskCard = (props: Props) => {
           className="w-full my-2"
           initialValue={dateInput}
           onChange={handleDateInput}
-        />
-        <InputCategory
-          className="w-full my-2"
-          categories={toDo.category}
-          onChange={handleCategoryInput}
-          initialValue={categoryInput}
         />
         <div className="flex flex-row justify-around w-full">
           <Link href={"/toDo"}>

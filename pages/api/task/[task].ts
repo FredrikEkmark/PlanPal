@@ -148,10 +148,10 @@ async function main(
       } else {
         description = body.description
       }
-      if (!body?.done) {
-        done = task.done
-      } else {
+      if (body && body.done !== undefined) {
         done = body.done
+      } else {
+        done = task.done
       }
       if (!body?.date) {
         date = task.date
