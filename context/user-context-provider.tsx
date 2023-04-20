@@ -41,46 +41,7 @@ const initialCategory = [
     title: "Skola",
     id: "1",
     color: "",
-    toDoList: [
-      {
-        date: new Date().toISOString().slice(0, 10),
-        id: "1",
-        categoryId: "1",
-        title: "Test",
-        description: "des test",
-        done: true,
-      },
-    ],
-  },
-  {
-    title: "Fritid",
-    id: "2",
-    color: "",
-    toDoList: [
-      {
-        date: "2000-12-12",
-        id: "2",
-        categoryId: "2",
-        title: "Test",
-        description: "des test",
-        done: false,
-      },
-    ],
-  },
-  {
-    title: "Övrigt",
-    id: "3",
-    color: "",
-    toDoList: [
-      {
-        date: "2030-12-12",
-        id: "3",
-        categoryId: "3",
-        title: "Test",
-        description: "des test",
-        done: false,
-      },
-    ],
+    toDoList: [],
   },
 ]
 

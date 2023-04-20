@@ -52,8 +52,8 @@ const LoginCard = ({}) => {
           <Image
             src={"/logo.svg"}
             alt={"#"}
-            width={"200"}
-            height={"85"}
+            width={"224"}
+            height={"41"}
           ></Image>
         </div>
       </div>
