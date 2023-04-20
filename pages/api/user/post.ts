@@ -23,9 +23,10 @@ type UserBody = {
 
 type UserImport = {
   id: string
-  title: string
-  color: string
-  userId: string
+  email: string
+  password: string
+  firstName: string | undefined
+  lastName: string | undefined
 }
 
 type Data = {

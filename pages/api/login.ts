@@ -9,9 +9,10 @@ import { PrismaClient } from "@prisma/client"
 
 type UserImport = {
   id: string
-  title: string
-  color: string | undefined
-  userId: string
+  email: string
+  password: string
+  firstName: string | undefined
+  lastName: string | undefined
 }
 
 type Data = {
