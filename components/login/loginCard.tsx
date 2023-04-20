@@ -50,7 +50,7 @@ const LoginCard = ({}) => {
       <div className="flex items-center justify-center">
         <div className="mt-20">
           <Image
-            src={"/public/logo.svg"}
+            src={"/logo.svg"}
             alt={"#"}
             width={"224"}
             height={"41"}
