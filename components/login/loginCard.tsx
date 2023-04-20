@@ -75,12 +75,12 @@ const LoginCard = ({}) => {
       </form>
 
       <p className="absolute mt-60 left-16">
-        No account? -
+        No account? <span> </span>
         <Link
           className=" box-border border-b-2 border-[none] border-solid;"
           href={"/signup"}
         >
-          - Create one here!
+          Create one here!
         </Link>
       </p>
 
