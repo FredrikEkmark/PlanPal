@@ -3,6 +3,7 @@ import Image from "next/image"
 import Link from "next/link"
 import router from "next/router"
 import { useState } from "react"
+import { PrismaClient } from "@prisma/client"
 
 import Button from "../basic/button"
 interface Props {}
@@ -13,16 +14,26 @@ const LoginCard = ({}) => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
-  const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(event.target.value)
-  }
-
-  const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(event.target.value)
-  }
-
-  const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+
+    const authHeader = `Basic ${btoa(`${email}:${password}`)}`
+
+    const response = await fetch("http://localhost:3000/api/login", {
+      // Kolla om denna finns! //
+      method: "GET",
+      credentials: "include" as RequestCredentials,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: authHeader,
+      },
+    })
+    const json = await response.json()
+    const data = JSON.parse(JSON.stringify(json.result))
+
+    if (data.email === email) {
+      router.push("/") // Här skickas vi vidare till Home
+    }
 
     // AVSLUTAR DEN HÄR //
   }
@@ -50,22 +61,24 @@ const LoginCard = ({}) => {
         <h1>Planning made easy!</h1>
       </div>
 
-      <form className="mt-2" onSubmit={handleLogin}>
+      <form className="mt-2" onSubmit={handleSubmit}>
+        {" "}
+        {/* Här löser vi inloggen steg 1 */}
         <input
           className=" mt-10 bg-transparent left-4 gap-2.5 absolute w-[90%] justify-center box-border border-b-2 border-[none] border-solid;"
-          type="Email"
-          placeholder="Email"
+          type="email"
+          placeholder="email@somthing.com"
           value={email}
-          onChange={handleEmailChange}
-          required
+          onChange={(event) => setEmail(event.target.value)}
+          required // Kolla om vi ska ha dennna här //
         />
-
         <input
           className=" mt-20 bg-transparent left-4 gap-2.5 absolute w-[90%] justify-center box-border border-b-2 border-[none] border-solid;"
-          type="Password"
+          type="password"
           placeholder="Password"
+          value={password}
+          onChange={(event) => setPassword(event.target.value)}
         />
-
         <Button
           className=" mt-32 box-border flex flex-row justify-center items-center gap-2.5 absolute w-[90%] h-14 border p-2.5 rounded-[5px] border-solid border-black left-4 top-[440px];"
           color={"green"}

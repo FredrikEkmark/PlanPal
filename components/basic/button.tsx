@@ -32,6 +32,7 @@ const Button = (props: Props) => {
     <button
       className={`${color(props.color)} ${props.className}`}
       onClick={props.onClick}
+      type="submit"
     >
       {props.children}
     </button>

@@ -9,9 +9,12 @@ import { PrismaClient } from "@prisma/client"
 
 type UserImport = {
   id: string
-  title: string
-  color: string | undefined
-  userId: string
+  email: string
+  password: string
+  firstName: string | undefined
+  lastName: string | undefined
+
+  // HÄR SKA EN USER FINNAS //
 }
 
 type Data = {
@@ -22,6 +25,7 @@ const prisma = new PrismaClient()
 
 async function main(email: string, password: string) {
   const user = await prisma.user.findUnique({
+    // VAD GÖR VI MED DENNA!!!?? //
     where: { email: email },
   })
   if (user?.password === password) {
