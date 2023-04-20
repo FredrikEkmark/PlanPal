@@ -1,6 +1,7 @@
 import { Calendar } from "@/types/calendar"
 import { Task } from "@/types/task"
 import { ToDo } from "@/types/toDo"
+import { User } from "@/types/user"
 import { ReactNode, useState, createContext } from "react"
 
 // boilerplate
@@ -9,11 +10,11 @@ interface UserProviderProps {
 }
 
 interface UserContextProps {
-  username: string
+  user: User
   currentPage: string
   toDo: ToDo
-  calendar: Calendar
-  setUsername: (username: string) => void
+  calendar: Calendar | undefined
+  setUser: (user: User) => void
   setCurrentPage: (currentPage: string) => void
   setToDo: (toDo: ToDo) => void
   addTask: (categoryTitle: string, task: Task) => void
@@ -23,6 +24,14 @@ interface UserContextProps {
 }
 
 // Default
+
+const initialUser = {
+  id: "clglz54lr0000vq0xpjzkd8jy",
+  email: "fredrik@gmail.com",
+  password: "fasfsafsafsafafsa",
+  firstName: "Fredrik",
+  lastName: "",
+}
 
 const initialCategory = [
   {
@@ -73,11 +82,11 @@ const initialCategory = [
 ]
 
 const initialUserContext: UserContextProps = {
-  username: "",
+  user: initialUser,
   currentPage: "",
   toDo: { category: initialCategory },
-  calendar: { id: 0 },
-  setUsername: () => {},
+  calendar: { id: "1" },
+  setUser: () => {},
   setCurrentPage: () => {},
   setToDo: () => {},
   addTask: () => {},
@@ -89,20 +98,20 @@ const initialUserContext: UserContextProps = {
 export const UserContext = createContext<UserContextProps>(initialUserContext)
 
 const UserContextProvider: React.FC<UserProviderProps> = ({ children }) => {
-  const [username, setUsername] = useState<string>("")
+  const [user, setUser] = useState<User>(initialUser)
   const [currentPage, setCurrentPage] = useState<string>("")
   const [toDo, setToDo] = useState<ToDo>({
     category: initialCategory,
   }) // This should be changed to Database later
-  const [calendar, setCalendar] = useState<Calendar>({ id: 0 })
+  const [calendar, setCalendar] = useState<Calendar>({ id: "1" })
 
   // Connect
   const contextValue: UserContextProps = {
-    username,
+    user,
     currentPage,
     toDo,
     calendar,
-    setUsername: (username: string) => setUsername(username),
+    setUser: (user: User) => setUser(user),
     setCurrentPage: (currentPage: string) => setCurrentPage(currentPage),
     setToDo: (toDo: ToDo) => setToDo(toDo),
     setCalendar: (calendar: Calendar) => setCalendar(calendar),

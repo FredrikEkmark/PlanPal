@@ -16,8 +16,8 @@ interface Props {
 
 const EditTaskCard = (props: Props) => {
   const {
-    username,
-    setUsername,
+    user,
+    setUser,
     currentPage,
     setCurrentPage,
     toDo,
@@ -40,7 +40,7 @@ const EditTaskCard = (props: Props) => {
   }
 
   const [descriptionInput, setDescriptionInput] = useState<string>(
-    originalTask.description
+    originalTask.description ?? ""
   )
 
   function handleDescriptionInput(newValue: string) {
