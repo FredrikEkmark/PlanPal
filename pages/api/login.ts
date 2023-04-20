@@ -23,6 +23,7 @@ const prisma = new PrismaClient()
 
 async function main(email: string, password: string) {
   const user = await prisma.user.findUnique({
+    // VAD GÖR VI MED DENNA!!!?? //
     where: { email: email },
   })
   if (user?.password === password) {
