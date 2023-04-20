@@ -38,7 +38,7 @@ const LoginCard = ({}) => {
     // AVSLUTAR DEN HÄR //
   }
   return (
-    <div className=" bg-[#FBEE7B] w-[354px] h-[598px]">
+    <div className=" bg-[#FBEE7B] w-screen h-screen">
       <div className="fixed right-[-12%] left-[85.6%] top-[2.7%];">
         <Image
           src={"/greenStar.svg"}
@@ -50,7 +50,7 @@ const LoginCard = ({}) => {
       <div className="flex items-center justify-center">
         <div className="mt-20">
           <Image
-            src={"/logo.svg"}
+            src={"/public/logo.svg"}
             alt={"#"}
             width={"224"}
             height={"41"}
