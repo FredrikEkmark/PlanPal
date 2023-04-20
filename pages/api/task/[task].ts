@@ -62,13 +62,13 @@ async function main(
         where: { id: id },
       })
       if (!task) {
-        return "ERROR"
+        return "ERROR no Task"
       }
       const category = await prisma.category.findUnique({
         where: { id: task.categoryId },
       })
       if (!category) {
-        return "ERROR"
+        return "ERROR no Category"
       }
       if (category.userId !== user.id) {
         return "NOT AUTHORIZED"
@@ -88,7 +88,7 @@ async function main(
         where: { id: body.categoryId },
       })
       if (!category) {
-        return "ERROR"
+        return "ERROR error no Category second"
       }
       if (category.userId !== user.id) {
         return "NOT AUTHORIZED"
@@ -104,7 +104,7 @@ async function main(
       }
       const task = await prisma.task.create(postBody)
       if (!task) {
-        return "ERROR"
+        return "ERROR no Task"
       }
       return task
     }

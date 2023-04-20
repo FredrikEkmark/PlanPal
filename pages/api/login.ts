@@ -13,8 +13,6 @@ type UserImport = {
   password: string
   firstName: string | undefined
   lastName: string | undefined
-
-  // HÄR SKA EN USER FINNAS //
 }
 
 type Data = {

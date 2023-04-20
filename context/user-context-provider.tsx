@@ -1,3 +1,6 @@
+import { addTaskFetch } from "@/functions/addTaskFetch"
+import { deleteTaskFetch } from "@/functions/deleteTaskFetch"
+import { editTaskFetch } from "@/functions/editTaskFetch"
 import { Calendar } from "@/types/calendar"
 import { Task } from "@/types/task"
 import { ToDo } from "@/types/toDo"
@@ -17,7 +20,7 @@ interface UserContextProps {
   setUser: (user: User) => void
   setCurrentPage: (currentPage: string) => void
   setToDo: (toDo: ToDo) => void
-  addTask: (categoryTitle: string, task: Task) => void
+  addTask: (categoryTitle: string, task: Task, user: User) => void
   editTask: (task: Task) => void
   deleteTask: (task: Task) => void
   setCalendar: (calendar: Calendar) => void
@@ -115,13 +118,14 @@ const UserContextProvider: React.FC<UserProviderProps> = ({ children }) => {
     setCurrentPage: (currentPage: string) => setCurrentPage(currentPage),
     setToDo: (toDo: ToDo) => setToDo(toDo),
     setCalendar: (calendar: Calendar) => setCalendar(calendar),
-    addTask: (categoryTitle: string, task: Task) => {
+    addTask: async (categoryTitle: string, task: Task) => {
+      const postedTask = await addTaskFetch(task, user)
       const categoryIndex = toDo.category.findIndex(
-        (category) => category.title === categoryTitle
+        (category) => category.id === postedTask.categoryId
       )
       const updatedCategory = {
         ...toDo.category[categoryIndex],
-        toDoList: [...toDo.category[categoryIndex].toDoList, task],
+        toDoList: [...toDo.category[categoryIndex].toDoList, postedTask],
       }
       const updatedCategories = [
         ...toDo.category.slice(0, categoryIndex),
@@ -133,15 +137,16 @@ const UserContextProvider: React.FC<UserProviderProps> = ({ children }) => {
         category: updatedCategories,
       })
     },
-    editTask: (task: Task) => {
+    editTask: async (task: Task) => {
+      const editedTask = await editTaskFetch(task, user)
       const categoryIndex = toDo.category.findIndex(
         (category) => category.id === task.categoryId
       )
       setToDo((toDo) => {
         const updatedToDoList = toDo.category[categoryIndex].toDoList.map(
           (existingTask) => {
-            if (existingTask.id === task.id) {
-              return task // replace existing task with updated task
+            if (existingTask.id === editedTask.id) {
+              return editedTask // replace existing task with updated task
             }
             return existingTask
           }
@@ -159,6 +164,7 @@ const UserContextProvider: React.FC<UserProviderProps> = ({ children }) => {
       })
     },
     deleteTask: (task: Task) => {
+      deleteTaskFetch(task, user)
       const categoryIndex = toDo.category.findIndex(
         (category) => category.id === task.categoryId
       )
