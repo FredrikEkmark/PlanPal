@@ -68,7 +68,7 @@ const AddTaskCard = ({}) => {
       date: dateInput,
       done: false,
     }
-    addTask(categoryInput, newTask)
+    addTask(categoryInput, newTask, user)
     console.log("handle submithas been called " + newTask.id)
   }
   return (

@@ -14,7 +14,7 @@ model Task {
   id          String   @id @default(cuid())
   title       String   @db.VarChar(32)
   description String?  @db.VarChar(255)
-  date        DateTime @default(now())
+  date        string   @db.VarChar(10)
   createdAt   DateTime @default(now())
   done        Boolean  @default(false)
   categoryId  String
