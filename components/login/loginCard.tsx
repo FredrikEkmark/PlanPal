@@ -19,7 +19,7 @@ const LoginCard = ({}) => {
 
     const authHeader = `Basic ${btoa(`${email}:${password}`)}`
 
-    const response = await fetch(`../api/toDo`, {
+    const response = await fetch(`../api/login`, {
       // Kolla om denna finns! //
       method: "GET",
       credentials: "include" as RequestCredentials,
@@ -32,7 +32,7 @@ const LoginCard = ({}) => {
     const data = JSON.parse(JSON.stringify(json.result))
 
     if (data.email === email) {
-      router.push("/") // Här skickas vi vidare till Home
+      router.push("/toDo") // Här skickas vi vidare till Home
     }
 
     // AVSLUTAR DEN HÄR //
