@@ -12,7 +12,7 @@ METHODE: POST
 */
 
 import type { NextApiRequest, NextApiResponse } from "next"
-import { PrismaClient } from "@prisma/client"
+import { prisma } from "../../../client"
 
 type UserBody = {
   email: string
@@ -32,8 +32,6 @@ type UserImport = {
 type Data = {
   result: UserImport | string
 }
-
-const prisma = new PrismaClient()
 
 async function main(
   authUser: string,
@@ -99,9 +97,7 @@ export default async function handler(
   const result = await main(username, password, body as UserBody, req.method)
   if (result) {
     res.status(200).json({ result: JSON.parse(JSON.stringify(result)) })
-    await prisma.$disconnect()
   } else {
     res.status(500).json({ result: "No categories found" })
-    await prisma.$disconnect()
   }
 }
