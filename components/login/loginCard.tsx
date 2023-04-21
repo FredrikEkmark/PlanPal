@@ -19,7 +19,7 @@ const LoginCard = ({}) => {
 
     const authHeader = `Basic ${btoa(`${email}:${password}`)}`
 
-    const response = await fetch(`../api/login`, {
+    const response = await fetch(`../api/toDo`, {
       // Kolla om denna finns! //
       method: "GET",
       credentials: "include" as RequestCredentials,
