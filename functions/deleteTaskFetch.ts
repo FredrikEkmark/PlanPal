@@ -19,10 +19,11 @@ export async function deleteTaskFetch(task: Task, user: User): Promise<Task> {
     credentials: "include" as RequestCredentials,
   }
 
-  const res = await fetch(
-    `${process.env.URL}/api/task/task?id=${task.id}`,
-    requestOptions
-  )
+  const url =
+    "../".repeat(window.location.pathname.split("/").length - 2) +
+    `/api/task/task?id=${task.id}`
+
+  const res = await fetch(url, requestOptions)
   const json = await res.json()
   const data = JSON.parse(JSON.stringify(json.result))
 

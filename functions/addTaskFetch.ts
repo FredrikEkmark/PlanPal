@@ -26,7 +26,11 @@ export async function addTaskFetch(task: Task, user: User): Promise<Task> {
     credentials: "include" as RequestCredentials,
   }
 
-  const res = await fetch(`${process.env.URL}/api/task/task`, requestOptions)
+  const url =
+    "../".repeat(window.location.pathname.split("/").length - 2) +
+    `/api/task/task`
+
+  const res = await fetch(url, requestOptions)
   const json = await res.json()
   const data = JSON.parse(JSON.stringify(json.result))
 
