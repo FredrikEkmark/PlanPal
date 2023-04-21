@@ -11,7 +11,7 @@ COMMENT: POST Dosn't require ?id=<CATEGORYID>, GET, DELETE Dosn't require BODY
 */
 
 import type { NextApiRequest, NextApiResponse } from "next"
-import { PrismaClient } from "@prisma/client"
+import { prisma } from "../../../client"
 
 type CategoryBody = {
   title: string
@@ -28,8 +28,6 @@ type CategoryImport = {
 type Data = {
   result: CategoryImport | string
 }
-
-const prisma = new PrismaClient()
 
 async function main(
   id: string | undefined,
@@ -179,9 +177,7 @@ export default async function handler(
   )
   if (result) {
     res.status(200).json({ result: JSON.parse(JSON.stringify(result)) })
-    await prisma.$disconnect()
   } else {
     res.status(500).json({ result: "No categories found" })
-    await prisma.$disconnect()
   }
 }

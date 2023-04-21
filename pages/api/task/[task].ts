@@ -13,7 +13,7 @@ COMMENT: POST Dosn't require ?id=<TASKID>, GET, DELETE Dosn't require BODY
 */
 
 import type { NextApiRequest, NextApiResponse } from "next"
-import { PrismaClient } from "@prisma/client"
+import { prisma } from "../../../client"
 
 type TaskBody = {
   title: string | undefined
@@ -35,8 +35,6 @@ type TaskImport = {
 type Data = {
   result: TaskImport | string
 }
-
-const prisma = new PrismaClient()
 
 async function main(
   id: string | undefined,
@@ -244,9 +242,7 @@ export default async function handler(
   )
   if (result) {
     res.status(200).json({ result: JSON.parse(JSON.stringify(result)) })
-    await prisma.$disconnect()
   } else {
     res.status(500).json({ result: "No Tasks found" })
-    await prisma.$disconnect()
   }
 }

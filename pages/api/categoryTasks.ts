@@ -5,7 +5,7 @@ AUTH Basic: username: email, password: password
 */
 
 import type { NextApiRequest, NextApiResponse } from "next"
-import { PrismaClient } from "@prisma/client"
+import { prisma } from "../../client"
 
 type TaskImport = {
   id: string
@@ -20,8 +20,6 @@ type TaskImport = {
 type Data = {
   result: TaskImport[] | string
 }
-
-const prisma = new PrismaClient()
 
 async function main(
   categoryId: string,
@@ -78,9 +76,7 @@ export default async function handler(
   )
   if (result) {
     res.status(200).json({ result: JSON.parse(JSON.stringify(result)) })
-    await prisma.$disconnect()
   } else {
     res.status(500).json({ result: "No tasks found" })
-    await prisma.$disconnect()
   }
 }
