@@ -19,7 +19,7 @@ const LoginCard = ({}) => {
 
     const authHeader = `Basic ${btoa(`${email}:${password}`)}`
 
-    const response = await fetch("http://localhost:3000/api/login", {
+    const response = await fetch(`${process.env.URL}/api/login`, {
       // Kolla om denna finns! //
       method: "GET",
       credentials: "include" as RequestCredentials,

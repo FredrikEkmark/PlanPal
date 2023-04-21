@@ -26,7 +26,7 @@ export async function addTaskFetch(task: Task, user: User): Promise<Task> {
     credentials: "include" as RequestCredentials,
   }
 
-  const res = await fetch(`http://localhost:3000/api/task/task`, requestOptions)
+  const res = await fetch(`${process.env.URL}/api/task/task`, requestOptions)
   const json = await res.json()
   const data = JSON.parse(JSON.stringify(json.result))
 

@@ -29,7 +29,7 @@ export async function editTaskFetch(task: Task, user: User): Promise<Task> {
   }
 
   const res = await fetch(
-    `http://localhost:3000/api/task/task?id=${task.id}`,
+    `${process.env.URL}/api/task/task?id=${task.id}`,
     requestOptions
   )
   const json = await res.json()
