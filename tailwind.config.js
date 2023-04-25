@@ -8,13 +8,26 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    fontSize: {
+      xs: "0.875rem",
+      s: "1rem",
+      m: "1.25rem",
+      l: "1.5rem",
+      xl: "2rem",
+    },
     extend: {
+      fontFamily: {
+        quicksand: ["Quicksand", "sans-serif"],
+      },
       colors: {
         ourcolors: {
-          purple: "#b577d5",
+          purple: "#A353CA",
           green: "#6ABEA6",
+          black: "#000000",
+          blue: "#057FA8",
           yellow: "#FBEE7B",
-          white: "#F3F3F3",
+          grey: "#F8F8F8",
+          white: "#FFFFFF",
           offWhite: "#F8F8F8",
           red: "#C53C2A",
           font: "#646464",
@@ -24,5 +37,3 @@ module.exports = {
   },
   plugins: [],
 }
-
-// quicksand import: @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
