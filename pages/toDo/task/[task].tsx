@@ -1,6 +1,7 @@
 import Box from "@/components/basic/box"
 import InputDate from "@/components/basic/inputDate"
 import Header from "@/components/header"
+import HeaderClear from "@/components/headerClear"
 import AddTaskCard from "@/components/toDo/addTaskCard"
 import EditTaskCard from "@/components/toDo/editTaskCard"
 import { NextPage } from "next"
@@ -15,7 +16,7 @@ const Task: NextPage<Props> = ({}) => {
 
   return (
     <div>
-      <Header currentPage={"Edit Task"} />
+      <HeaderClear currentPage={"Edit Task"} />
       <EditTaskCard id={value} />
     </div>
   )

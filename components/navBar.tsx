@@ -11,9 +11,9 @@ const NavBar = (props: Props) => {
     <div className="@apply fixed bottom-0 py-2 px-4 flex justify-between mx-[5%] w-[90%] shadow-[2px_2px_10px] bg-white rounded-[15px] inset[0%] mb-[15px]">
       <Link href={"/"}>
         {props.currentPage === "home" ? (
-          <div className=" bg-ourcolors-purple rounded-[8px] p-[5px]">
+          <div className=" rounded-[8px] p-[5px]">
             <Image
-              src={"/homeWhite.svg"}
+              src={"/blueHome.svg"}
               alt={"#"}
               width={"25"}
               height={"24"}
@@ -34,9 +34,9 @@ const NavBar = (props: Props) => {
       </Link>
       <Link href={"/calendar"}>
         {props.currentPage === "calendar" ? (
-          <div className=" bg-ourcolors-purple rounded-[8px] p-[5px]">
+          <div className=" rounded-[8px] p-[5px]">
             <Image
-              src={"/calendarWhite.svg"}
+              src={"/blueCalendar.svg"}
               alt={"#"}
               width={"18"}
               height={"18"}
@@ -57,9 +57,9 @@ const NavBar = (props: Props) => {
       </Link>
       <Link href={"/toDo"}>
         {props.currentPage === "todo" ? (
-          <div className="  bg-ourcolors-purple rounded-[8px] p-[5px]">
+          <div className=" rounded-[8px] p-[5px]">
             <Image
-              src={"/checkCircleWhite.svg"}
+              src={"/blueCheck.svg"}
               alt={"#"}
               width={"24"}
               height={"24"}

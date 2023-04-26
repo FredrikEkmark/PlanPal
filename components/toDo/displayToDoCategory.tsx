@@ -77,12 +77,13 @@ const DisplayToDoCategory = (props: Props) => {
   }
 
   const displayLateTasks = lateTasks.map((item) => (
-    <div className="flex " key={item.id}>
+    <div className="flex my-1" key={item.id}>
       <div
         onClick={() => {}}
-        className="flex items-center justify-center w-[15%] h-8 mr-[2%]"
+        className="flex items-center justify-beginning h-10 mr-[5%]"
       >
         <input
+          className="w-5"
           type="checkbox"
           checked={item.done}
           id={`${item.id}`}
@@ -92,10 +93,11 @@ const DisplayToDoCategory = (props: Props) => {
         />
       </div>
       <Link
-        className="flex items-center justify-begining w-[83%] h-8"
+        className="flex flex-col items-begining justify-center w-[93%] h-10"
         href={`/toDo/task/${item.id}`}
       >
-        <p>{item.title}</p>
+        <p className=" text-bl">{item.title}</p>
+        <p className=" text-ourcolors-font text-bm">{item.description}</p>
       </Link>
     </div>
   ))
@@ -104,9 +106,10 @@ const DisplayToDoCategory = (props: Props) => {
     <div className="flex " key={item.id}>
       <div
         onClick={() => {}}
-        className="flex items-center justify-center w-[15%] h-8 mr-[2%]"
+        className="flex items-center justify-beginning h-10 mr-[5%]"
       >
         <input
+          className="w-5 "
           type="checkbox"
           checked={item.done}
           id={`${item.id}`}
@@ -116,10 +119,11 @@ const DisplayToDoCategory = (props: Props) => {
         />
       </div>
       <Link
-        className="flex items-center justify-begining w-[83%] h-8"
+        className="flex flex-col items-begining justify-center w-[93%] h-10"
         href={`/toDo/task/${item.id}`}
       >
-        <p>{item.title}</p>
+        <p className=" text-bl">{item.title}</p>
+        <p className=" text-ourcolors-font text-bm">{item.description}</p>
       </Link>
     </div>
   ))
@@ -128,9 +132,10 @@ const DisplayToDoCategory = (props: Props) => {
     <div className="flex " key={item.id}>
       <div
         onClick={() => {}}
-        className="flex items-center justify-center w-[15%] h-8 mr-[2%]"
+        className="flex items-center justify-beginning h-10 mr-[5%]"
       >
         <input
+          className="w-5"
           type="checkbox"
           checked={item.done}
           id={`${item.id}`}
@@ -140,16 +145,17 @@ const DisplayToDoCategory = (props: Props) => {
         />
       </div>
       <Link
-        className="flex items-center justify-begining w-[83%] h-8"
+        className="flex flex-col items-begining justify-center w-[93%] h-10"
         href={`/toDo/task/${item.id}`}
       >
-        <p>{item.title}</p>
+        <p className=" text-bl">{item.title}</p>
+        <p className=" text-ourcolors-font text-bm">{item.description}</p>
       </Link>
     </div>
   ))
 
   return (
-    <div className={`w-full h-full bg-ourcolors-${"green"}`}>
+    <div className={`w-full h-full  bg-ourcolors-blue`}>
       <div className="flex p-[5%] pt-8 pb-6 ">
         <Image
           src={"/clipBoardWhite.svg"}
@@ -168,7 +174,7 @@ const DisplayToDoCategory = (props: Props) => {
       <TaskBoxCard>
         {lateTasks.length > 0 ? (
           <div>
-            <p>Late</p>
+            <p className="font-semibold text-hs text-ourcolors-font">Late</p>
             {displayLateTasks}
           </div>
         ) : (
@@ -176,7 +182,7 @@ const DisplayToDoCategory = (props: Props) => {
         )}
         {todayTasks.length > 0 ? (
           <div>
-            <p>Today</p>
+            <p className="font-semibold  text-hs text-ourcolors-font">Today</p>
             {displayTodayTasks}
           </div>
         ) : (
@@ -184,7 +190,9 @@ const DisplayToDoCategory = (props: Props) => {
         )}
         {upcomingTasks.length > 0 ? (
           <div>
-            <p>Upcomming</p>
+            <p className="font-semibold  text-hs text-ourcolors-font">
+              Upcomming
+            </p>
             {displayUpcomingTasks}
           </div>
         ) : (
