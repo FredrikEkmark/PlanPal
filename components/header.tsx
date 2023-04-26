@@ -15,7 +15,7 @@ const Header = (props: Props) => {
       <Image
         src={"/user.svg"}
         alt={"#"}
-        width="21"
+        width="20"
         height="22"
         style={{ width: "auto", height: "30px" }}
       ></Image>
