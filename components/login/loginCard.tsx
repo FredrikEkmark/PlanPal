@@ -6,6 +6,7 @@ import { useState } from "react"
 import { PrismaClient } from "@prisma/client"
 
 import Button from "../basic/button"
+import InputText from "../basic/inputText"
 interface Props {}
 
 const LoginCard = ({}) => {
@@ -13,6 +14,14 @@ const LoginCard = ({}) => {
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+
+  function handleEmailChange(newValue: string) {
+    setEmail(newValue)
+  }
+
+  function handlePasswordChange(newValue: string) {
+    setPassword(newValue)
+  }
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -38,80 +47,56 @@ const LoginCard = ({}) => {
     // AVSLUTAR DEN HÄR //
   }
   return (
-    <div className=" bg-[#FBEE7B] w-screen h-screen">
-      <div className="fixed right-[-12%] left-[85.6%] top-[2.7%];">
-        <Image
-          src={"/greenStar.svg"}
-          alt={"#"}
-          width={"100"}
-          height={"100"}
-        ></Image>
-      </div>
+    <div className="w-screen h-screen">
       <div className="flex items-center justify-center">
-        <div className="mt-20">
+        <div className="w-40 mt-10">
           <Image
-            src={"/logo.svg"}
+            src={"/newlogo.svg"}
             alt={"#"}
             width={"224"}
             height={"41"}
           ></Image>
         </div>
       </div>
-      <div className="flex justify-center text-2xl font-semibold font mt-7 ">
-        <h1>Planning made easy!</h1>
+      <div className="flex justify-center mt-7 mb-9 ">
+        <h1 className="font-semibold text-hm">Planning made easy!</h1>
       </div>
 
-      <form className="mt-2" onSubmit={handleSubmit}>
+      <form
+        className="mt-2 mx-[5%] flex flex-col items-center"
+        onSubmit={handleSubmit}
+      >
         {" "}
         {/* Här löser vi inloggen steg 1 */}
-        <input
-          className=" mt-10 bg-transparent left-4 gap-2.5 absolute w-[90%] justify-center box-border border-b-2 border-[none] border-solid;"
+        <InputText
+          className="my-2 "
           type="email"
-          placeholder="email@somthing.com"
-          value={email}
-          onChange={(event) => setEmail(event.target.value)}
-          required // Kolla om vi ska ha dennna här //
+          placeholder="Enter your email"
+          initialValue={email}
+          onChange={handleEmailChange}
+          // Kolla om vi ska ha dennna här //
         />
-        <input
-          className=" mt-20 bg-transparent left-4 gap-2.5 absolute w-[90%] justify-center box-border border-b-2 border-[none] border-solid;"
+        <InputText
+          className="my-2 "
           type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
+          placeholder="Enter your password"
+          initialValue={password}
+          onChange={handlePasswordChange}
         />
-        <Button
-          className=" mt-32 box-border flex flex-row justify-center items-center gap-2.5 absolute w-[90%] h-14 border p-2.5 rounded-[5px] border-solid border-black left-4 top-[440px];"
-          color={"green"}
-        >
-          Log in with email
+        <Button className="w-full my-8 " color={"blue"}>
+          Login
         </Button>
       </form>
-
-      <p className="absolute mt-60 left-16">
-        No account? <span> </span>
-        <Link
-          className=" box-border border-b-2 border-[none] border-solid;"
-          href={"/signup"}
-        >
-          Create one here!
-        </Link>
-      </p>
-
-      <div className="fixed left-[0.53%] right-[73.07%] bottom-[0.28%] top-[84,71%];  ">
-        <Image
-          src={"/greenStar.svg"}
-          alt={"#"}
-          width={"100"}
-          height={"100"}
-        ></Image>
-      </div>
-      <div className=" fixed right-[-12%] left-[65.6%] top-[80.7%] relative;">
-        <Image
-          src={"/purpleSymbol.svg"}
-          alt={"#"}
-          width={"140"}
-          height={"140"}
-        ></Image>
+      <div className="fixed flex justify-center w-screen bottom-5 ">
+        <p className=" text-hs">
+          Don't have an account? <span> </span>
+          <Link
+            className=" text-ourcolors-purple box-border border-b-2 border-[none] border-solid;"
+            href={"/signup"}
+          >
+            Register Now
+          </Link>
+        </p>
       </div>
     </div>
   )
