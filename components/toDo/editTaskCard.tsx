@@ -93,33 +93,24 @@ const EditTaskCard = (props: Props) => {
           onChangeBottom={handleDescriptionInput}
         />
       </Box>
-      <Box className="flex flex-col items-center">
-        <InputDate
-          className="w-full my-2"
-          initialValue={dateInput}
-          onChange={handleDateInput}
-        />
-        <div className="flex flex-row justify-around w-full">
-          <Link href={"/toDo"}>
-            <Button
-              className="my-4 mt-8 w-[100px]"
-              onClick={handleSubmit}
-              color={"green"}
-            >
-              Save
-            </Button>
-          </Link>
-          <Link href={"/toDo"}>
-            <Button
-              className="my-4 mt-8 w-[100px]"
-              onClick={handleDelete}
-              color={"red"}
-            >
-              Delete
-            </Button>
-          </Link>
-        </div>
-      </Box>
+
+      <InputDate
+        className="my-2 mx-[5%]"
+        initialValue={dateInput}
+        onChange={handleDateInput}
+      />
+      <div className="flex flex-row justify-between my-4 mt-8 mx-[5%]">
+        <Link href={"/toDo"}>
+          <Button className="h-[40px]" onClick={handleSubmit} color={"blue"}>
+            Save
+          </Button>
+        </Link>
+        <Link href={"/toDo"}>
+          <Button className="h-[40px]" onClick={handleDelete} color={"red"}>
+            Delete
+          </Button>
+        </Link>
+      </div>
     </div>
   )
 }
