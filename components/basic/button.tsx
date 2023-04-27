@@ -8,7 +8,7 @@ interface Props {
 }
 
 function color(color: string) {
-  const css = " w-[171px] h-[40px] rounded-[5px] "
+  const css = " text-hs w-[171px] h-[60px] rounded-[10px] "
 
   switch (color) {
     case "green":
@@ -19,6 +19,8 @@ function color(color: string) {
       return css + " bg-ourcolors-yellow text-ourcolors-white"
     case "red":
       return css + " bg-ourcolors-red text-ourcolors-white"
+    case "blue":
+      return css + " bg-ourcolors-blue text-ourcolors-white"
     case "white":
     default:
       return (

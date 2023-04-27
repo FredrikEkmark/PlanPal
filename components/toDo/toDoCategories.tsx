@@ -24,7 +24,7 @@ const ToDoCategories = (props: Props) => {
       key={categories.title}
     >
       <h2>{categories.title}</h2>
-      <p className="text-ourcolors-green">
+      <p className="text-ourcolors-purple">
         {
           categories.toDoList.filter(
             (task) => task.date >= now || task.done === false
@@ -41,7 +41,7 @@ const ToDoCategories = (props: Props) => {
       <div className="flex flex-wrap justify-between">
         <CategoryBox className="" href="/toDo/category/all">
           <h2>All Tasks</h2>
-          <p className="text-ourcolors-green">
+          <p className="text-ourcolors-purple">
             {props.categorys.reduce(
               (total, category) =>
                 total +
@@ -58,7 +58,7 @@ const ToDoCategories = (props: Props) => {
           <div className="flex">
             <Image
               className="pr-2"
-              src={"/plusGreen.svg"}
+              src={"/plusPurple.svg"}
               alt={"#"}
               height={"21"}
               width={"21"}

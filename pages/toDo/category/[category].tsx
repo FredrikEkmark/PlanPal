@@ -9,6 +9,7 @@ import { useRouter } from "next/dist/client/router"
 import { Task } from "@/types/task"
 import AddTaskButton from "@/components/basic/addTaskButton"
 import Link from "next/link"
+import HeaderClear from "@/components/headerClear"
 
 interface Props {}
 
@@ -46,7 +47,7 @@ const Category: NextPage<Props> = ({}) => {
 
   return (
     <div>
-      <Header currentPage={currentPage} />
+      <HeaderClear currentPage={currentPage} />
       <DisplayToDoCategory title={title}></DisplayToDoCategory>
       <Link href={"/toDo/addTask"}>
         <AddTaskButton></AddTaskButton>

@@ -9,11 +9,15 @@ module.exports = {
   ],
   theme: {
     fontSize: {
-      xs: "0.875rem",
-      s: "1rem",
-      m: "1.25rem",
-      l: "1.5rem",
-      xl: "2rem",
+      hxs: "0.875rem",
+      hs: "1rem",
+      hm: "1.25rem",
+      hl: "1.5rem",
+      hxl: "2rem",
+      bs: "0.75rem",
+      bm: "0.875rem",
+      bl: "1rem",
+      bxl: "1.25rem",
     },
     extend: {
       fontFamily: {
@@ -30,6 +34,7 @@ module.exports = {
           white: "#FFFFFF",
           offWhite: "#F8F8F8",
           red: "#C53C2A",
+          bluegray: "#E8ECF4",
           font: "#646464",
         },
       },

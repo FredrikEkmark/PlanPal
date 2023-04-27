@@ -9,7 +9,7 @@ interface Props {
 const AddTaskButton = (props: Props) => {
   return (
     <button
-      className={` @apply fixed bottom-[100px] mr-[5%] right-0 bg-ourcolors-green h-[66px] w-[66px] flex justify-center items-center rounded-full ${props.className}`}
+      className={` @apply fixed bottom-[100px] mr-[5%] right-0 bg-ourcolors-blue h-[66px] w-[66px] flex justify-center items-center rounded-full ${props.className}`}
       onClick={props.onClick}
     >
       <Image
