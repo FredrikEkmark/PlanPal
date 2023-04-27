@@ -71,7 +71,7 @@ const RegisterUserCard = ({}) => {
         </Button>
         <div className="relative flex flex-col items-center w-screen">
           <p className=" text-bs">
-            By creating an account, I agree to PlanPal's
+            By creating an account, I agree to PlanPal`&apos;`s
           </p>{" "}
           <Link
             className=" text-bs text-ourcolors-purple box-border border-b-2 border-[none] border-solid;"
