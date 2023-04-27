@@ -94,6 +94,7 @@ export default async function handler(
 
   const body = req.body
 
+  // HÄR SKRIVER VI ERROR LOGIKEN //
   const result = await main(username, password, body as UserBody, req.method)
   if (result) {
     res.status(200).json({ result: JSON.parse(JSON.stringify(result)) })
