@@ -5,16 +5,69 @@ import InputText from "../basic/inputText"
 import Button from "../basic/button"
 import { useState } from "react"
 import Link from "next/link"
+import router from "next/router"
 
 interface Props {}
 
 const RegisterUserCard = ({}) => {
+  // FUNKTIONALLITET HÄR //
+
+  const [firstname, setFirstname] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [confirmPassword, setConfirmPassword] = useState("")
+
+  function handleFirstnameChange(newValue: string) {
+    setFirstname(newValue)
+  }
+
+  function handleEmailChange(newValue: string) {
+    setEmail(newValue)
+  }
+
+  function handlePasswordChange(newValue: string) {
+    setPassword(newValue)
+  }
+  function handleConfirmPasswordChange(newValue: string) {
+    setConfirmPassword(newValue)
+  }
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+
+    const authHeader = `Basic ${btoa(
+      `${"YE9i5JoZnk22PFOS5VsAcifqeDplKtTlY6pNY6MR"}:${"QNjvvNrSEekwF3b4OcbdTrC2Qm5Uq1biHvfK1TKz"}`
+    )}`
+
+    const userBody = {
+      email: email,
+      password: password,
+      firstName: firstname,
+      lastName: "",
+    }
+
+    const response = await fetch(`../api/user/post`, {
+      // ändrat denna till signup
+
+      method: "POST", // byter metod till POST
+      credentials: "include" as RequestCredentials,
+      body: JSON.stringify(userBody),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: authHeader,
+      },
+    })
+    const json = await response.json()
+    const data = JSON.parse(JSON.stringify(json.result))
+
+    if (data.email === email) {
+      router.push("/toDo") // Här skickas vi vidare till Home
+    } else {
+      console.log(data)
+    }
   }
+  // AVSLUTAR DEN HÄR //
+
   return (
     <>
       <div className="flex items-center justify-center">
@@ -38,33 +91,31 @@ const RegisterUserCard = ({}) => {
         {" "}
         <InputText
           className="my-2 "
-          type="email"
+          type="name"
           placeholder="Full Name"
-          initialValue={email}
-          onChange={setEmail}
-          // Kolla om vi ska ha dennna här //
+          initialValue={firstname}
+          onChange={handleFirstnameChange} // La till denna
         />
         <InputText
           className="my-2 "
           type="email"
           placeholder="Email"
           initialValue={email}
-          onChange={setEmail}
-          // Kolla om vi ska ha dennna här //
+          onChange={handleEmailChange}
         />
         <InputText
           className="my-2 "
           type="password"
           placeholder="Password"
           initialValue={password}
-          onChange={setPassword}
+          onChange={handlePasswordChange}
         />
         <InputText
           className="my-2 "
           type="password"
           placeholder="Confirm password"
-          initialValue={password}
-          onChange={setPassword}
+          initialValue={confirmPassword}
+          onChange={handleConfirmPasswordChange}
         />
         <Button className="w-full my-8 " color={"blue"}>
           Sign Up!
