@@ -52,21 +52,7 @@ const Index: NextPage<Props> = ({}) => {
   return (
     <div>
       <Header currentPage={currentPage} />
-      <Box>
-        <p>test</p>
-        <Button color={"purple"}>Save</Button>
-        <br />
-        <InputDate onChange={handleDateInput} initialValue={input} />
-        <br />
-        <p>{input}</p>
-        <InputCategory
-          categories={toDo.category}
-          onChange={handleCategoryInput}
-          initialValue={categoryInput}
-        ></InputCategory>
-        <br />
-        <p>{categoryInput}</p>
-      </Box>
+
       <NavBar currentPage={currentPage} />
     </div>
   )

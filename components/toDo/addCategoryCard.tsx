@@ -48,7 +48,7 @@ const AddCategoryCard = ({}) => {
           <Button
             className="my-4 mt-8 w-[100px]"
             onClick={handleSubmit}
-            color={"green"}
+            color={"blue"}
           >
             Save Category
           </Button>

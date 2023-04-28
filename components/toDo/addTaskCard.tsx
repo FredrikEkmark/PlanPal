@@ -94,7 +94,7 @@ const AddTaskCard = ({}) => {
           initialValue={categoryInput}
         />
         <Link href={"/toDo"}>
-          <Button className="my-4 mt-8" onClick={handleSubmit} color={"green"}>
+          <Button className="my-4 mt-8" onClick={handleSubmit} color={"blue"}>
             Save
           </Button>
         </Link>

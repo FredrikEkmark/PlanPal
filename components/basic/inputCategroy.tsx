@@ -26,14 +26,7 @@ const InputCategory = (props: Props) => {
 
   return (
     <div className={`flex p-2 border-2 rounded-[10px] ${props.className}`}>
-      <label className="flex text-ourcolors-font" htmlFor="categoryInput">
-        <Image
-          src="/label.svg"
-          alt={"#"}
-          width={"18"}
-          height={"18"}
-          style={{ width: "auto", height: "auto" }}
-        ></Image>
+      <label className="flex px-1 text-ourcolors-font" htmlFor="categoryInput">
         <p className="px-1"></p>
         {"Category"}:{" "}
       </label>
@@ -43,7 +36,7 @@ const InputCategory = (props: Props) => {
         value={value}
         onChange={handleChange}
       >
-        <option value="">Select Category</option>
+        <option value="">Select</option>
         {categoryOptions}
       </select>
     </div>
