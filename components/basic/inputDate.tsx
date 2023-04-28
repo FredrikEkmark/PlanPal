@@ -18,14 +18,7 @@ const InputDate = (props: Props) => {
 
   return (
     <div className={`flex p-2 border-2 rounded-[10px] ${props.className}`}>
-      <label className="flex text-ourcolors-font" htmlFor="dateInput">
-        <Image
-          src="/calendar.svg"
-          alt={"#"}
-          width={15}
-          height={"17"}
-          style={{ width: "auto", height: "auto" }}
-        ></Image>
+      <label className="flex px-1 text-ourcolors-font" htmlFor="dateInput">
         <p className="px-1"></p>
         {"Date"}:{" "}
       </label>
