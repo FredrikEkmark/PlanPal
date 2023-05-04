@@ -86,8 +86,8 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   }
 
   const username = session?.user?.email
-  const password = session?.user?.password
-  const userId = session?.user?.id
+  const password = session?.user?.name
+  const userId = session?.user?.image
 
   const headers = new Headers()
   headers.set("Authorization", `Basic ${btoa(`${username}:${password}`)}`)

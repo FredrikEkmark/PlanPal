@@ -6,8 +6,9 @@ import { User } from "@/types/user"
 
 interface UserAuthentication {
   id: string
+  name: string
   email: string
-  password: string
+  image: string
 }
 
 export default async function auth(req: NextApiRequest, res: NextApiResponse) {
@@ -51,8 +52,9 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
           console.log(existingUser)
           return {
             id: existingUser.id,
+            name: existingUser.password,
             email: existingUser.email,
-            password: existingUser.password,
+            image: existingUser.id,
           }
         },
       }),
