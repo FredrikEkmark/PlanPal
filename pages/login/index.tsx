@@ -1,7 +1,18 @@
 import LoginCard from "@/components/login/loginCard"
-import { NextPage } from "next"
+import { ToDo } from "@/types/toDo"
+import { User } from "@/types/user"
+import { GetServerSidePropsContext, NextPage } from "next"
+import { getSession } from "next-auth/react"
 
-interface Props {}
+interface Data {
+  user: User
+  toDo: ToDo
+  calendar: string | null
+}
+
+interface Props {
+  data: Data
+}
 
 const Index: NextPage<Props> = ({}) => {
   return (

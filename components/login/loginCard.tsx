@@ -1,12 +1,11 @@
-import { NextPage } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import router from "next/router"
 import { useState } from "react"
-import { PrismaClient } from "@prisma/client"
-
 import Button from "../basic/button"
 import InputText from "../basic/inputText"
+import { signIn } from "next-auth/react"
+
 interface Props {}
 
 const LoginCard = ({}) => {
@@ -14,6 +13,7 @@ const LoginCard = ({}) => {
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [error, setError] = useState<string | null>(null)
 
   function handleEmailChange(newValue: string) {
     setEmail(newValue)
@@ -23,6 +23,7 @@ const LoginCard = ({}) => {
     setPassword(newValue)
   }
 
+  /*
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
@@ -44,8 +45,31 @@ const LoginCard = ({}) => {
       router.push("/toDo") // Här skickas vi vidare till Home
     }
 
-    // AVSLUTAR DEN HÄR //
   }
+
+  */
+
+  const handleSignIn = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+
+    const result = await signIn("credentials", {
+      email,
+      password,
+      callbackUrl: "/toDo",
+      redirect: false,
+    })
+    if (result === undefined) {
+      return
+    }
+    if (result.error) {
+      setError("Wrong credentials")
+    } else {
+      router.push("/toDo")
+    }
+  }
+
+  // AVSLUTAR DEN HÄR //
+
   return (
     <div className="w-screen h-screen">
       <div className="flex items-center justify-center">
@@ -64,7 +88,7 @@ const LoginCard = ({}) => {
 
       <form
         className="mt-2 mx-[5%] flex flex-col items-center"
-        onSubmit={handleSubmit}
+        onSubmit={handleSignIn}
       >
         {" "}
         {/* Här löser vi inloggen steg 1 */}

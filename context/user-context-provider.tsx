@@ -29,17 +29,17 @@ interface UserContextProps {
 // Default
 
 const initialUser = {
-  id: "clglz54lr0000vq0xpjzkd8jy",
-  email: "fredrik@gmail.com",
-  password: "fasfsafsafsafafsa",
-  firstName: "Fredrik",
+  id: "",
+  email: "",
+  password: "",
+  firstName: "",
   lastName: "",
 }
 
 const initialCategory = [
   {
-    title: "Skola",
-    id: "1",
+    title: "",
+    id: "",
     color: "",
     toDoList: [],
   },

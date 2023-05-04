@@ -2,51 +2,17 @@ import Header from "@/components/header"
 import NavBar from "@/components/navBar"
 import ToDoCategories from "@/components/toDo/toDoCategories"
 import { UserContext } from "@/context/user-context-provider"
-import { addTaskFetch } from "@/functions/addTaskFetch"
 import { ToDo } from "@/types/toDo"
 import { User } from "@/types/user"
-import { NextPage } from "next"
+import { GetServerSidePropsContext, NextPage } from "next"
 import { useContext, useEffect } from "react"
-
-// start of boilerpalte getServerSideProps
-export async function getServerSideProps() {
-  const username = "fredrik@gmail.com"
-  const password = "fasfsafsafsafafsa"
-
-  const headers = new Headers()
-  headers.set("Authorization", `Basic ${btoa(`${username}:${password}`)}`)
-
-  const res = await fetch(
-    `${
-      process.env.URL
-    }/api/user/getFullUserData?id=${"clglz54lr0000vq0xpjzkd8jy"}`,
-    {
-      headers,
-      credentials: "include",
-    }
-  )
-  const json = await res.json()
-
-  const data = JSON.parse(JSON.stringify(json.result)) as Data
-
-  return {
-    props: {
-      data: {
-        user: data.user,
-        toDo: data.toDo,
-        calendar: null,
-      },
-    },
-  }
-}
+import { getSession, useSession } from "next-auth/react"
 
 interface Data {
   user: User
   toDo: ToDo
   calendar: string | null
 }
-
-// end of boilerpalte getServerSideProps
 
 interface Props {
   data: Data
@@ -90,3 +56,57 @@ const Index: NextPage<Props> = ({ data }) => {
 }
 
 export default Index
+
+// start of boilerpalte getServerSideProps
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const { req } = context
+  const session = await getSession({ req })
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    }
+  }
+
+  const username = session?.user?.email
+  const password = session?.user?.password
+  const userId = session?.user?.id
+
+  const headers = new Headers()
+  headers.set("Authorization", `Basic ${btoa(`${username}:${password}`)}`)
+
+  const res = await fetch(
+    `${process.env.URL}/api/user/getFullUserData?id=${userId}`,
+    {
+      headers,
+      credentials: "include",
+    }
+  )
+  const json = await res.json()
+
+  const data = JSON.parse(JSON.stringify(json.result)) as Data
+
+  if (!(data.user && data.toDo && data.calendar)) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    }
+  }
+
+  return {
+    props: {
+      data: {
+        user: data.user,
+        toDo: data.toDo,
+        calendar: null,
+      },
+    },
+  }
+}
+
+// end of boilerpalte getServerSideProps

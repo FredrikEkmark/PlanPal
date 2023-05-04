@@ -39,19 +39,26 @@ async function main(
     include: { tasks: true },
   })
 
-  const toDoCategories: Category[] = categories.map((category) => ({
-    id: category.id as string,
-    title: category.title as string,
-    color: category.color as string | undefined | null,
-    toDoList: category.tasks.map((task: Task) => ({
-      id: task.id as string,
-      categoryId: task.categoryId as string,
-      title: task.title as string,
-      description: task.description as string | null,
-      date: task.date.toISOString().slice(0, 10) as string,
-      done: task.done as boolean,
-    })) as Task[],
-  }))
+  const toDoCategories: Category[] = categories.map(
+    (category: {
+      id: string
+      title: string
+      color: string | null | undefined
+      tasks: Task[]
+    }) => ({
+      id: category.id as string,
+      title: category.title as string,
+      color: category.color as string | undefined | null,
+      toDoList: category.tasks.map((task: Task) => ({
+        id: task.id as string,
+        categoryId: task.categoryId as string,
+        title: task.title as string,
+        description: task.description as string | null,
+        date: task.date.toISOString().slice(0, 10) as string,
+        done: task.done as boolean,
+      })) as Task[],
+    })
+  )
 
   const data = {
     user: {
