@@ -72,6 +72,7 @@ const Index: NextPage<Props> = ({ data }) => {
 export default Index
 
 // start of boilerpalte getServerSideProps
+
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { req } = context
   const session = await getSession({ req })

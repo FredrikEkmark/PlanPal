@@ -1,9 +1,11 @@
+import Schedule from "@/components/calendar/schedule"
 import Header from "@/components/header"
 import NavBar from "@/components/navBar"
 import { UserContext } from "@/context/user-context-provider"
 import { ToDo } from "@/types/toDo"
 import { User } from "@/types/user"
 import { GetServerSidePropsContext, NextPage } from "next"
+import { now } from "next-auth/client/_utils"
 import { getSession } from "next-auth/react"
 import { useContext, useEffect } from "react"
 
@@ -18,6 +20,32 @@ interface Props {
 }
 
 const Index: NextPage<Props> = ({ data }) => {
+  // temp code //
+  const tempCalendar = {
+    id: "",
+    userId: "",
+    activites: [
+      {
+        id: "58383",
+        calendarId: "fasjfja",
+        date: new Date(now()).toISOString().slice(0, 10) as string,
+        startTime: "07:30",
+        endTime: "08:30",
+        name: "Lektion",
+        description: "I skolan",
+      },
+      {
+        id: "58383",
+        calendarId: "fasjfja",
+        date: new Date(now()).toISOString().slice(0, 10) as string,
+        startTime: "08:30",
+        endTime: "10:30",
+        name: "Super Tidig Lunch",
+        description: "Ät Lunch",
+      },
+    ],
+  }
+
   // start boilerplate for page //
 
   const {
@@ -45,9 +73,9 @@ const Index: NextPage<Props> = ({ data }) => {
   // end boilerplate for page //
 
   return (
-    <div>
+    <div className="h-screen bg-ourcolors-blue">
       <Header currentPage={currentPage} />
-      <p>{toDo.category[0].title}</p>
+      <Schedule date={new Date(now())} calendar={tempCalendar} />
       <NavBar currentPage={currentPage} />
     </div>
   )
