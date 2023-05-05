@@ -1,3 +1,4 @@
+import Main from "@/components/basic/main"
 import Schedule from "@/components/calendar/schedule"
 import Header from "@/components/header"
 import NavBar from "@/components/navBar"
@@ -7,7 +8,7 @@ import { User } from "@/types/user"
 import { GetServerSidePropsContext, NextPage } from "next"
 import { now } from "next-auth/client/_utils"
 import { getSession } from "next-auth/react"
-import { useContext, useEffect } from "react"
+import { useContext, useEffect, useState } from "react"
 
 interface Data {
   user: User
@@ -72,10 +73,20 @@ const Index: NextPage<Props> = ({ data }) => {
 
   // end boilerplate for page //
 
+  const [toggle, setToggle] = useState<boolean>(false)
+
   return (
     <div className="h-screen bg-ourcolors-blue">
-      <Header currentPage={currentPage} />
-      <Schedule date={new Date(now())} calendar={tempCalendar} />
+      <Header currentPage={currentPage} bright={true} />
+      <Main>
+        {toggle ? <></> : <div className="w-full h-[40%] bg-slate-500"></div>}
+        <Schedule
+          date={new Date(now())}
+          calendar={tempCalendar}
+          toggle={toggle}
+          setToggled={setToggle}
+        />
+      </Main>
       <NavBar currentPage={currentPage} />
     </div>
   )

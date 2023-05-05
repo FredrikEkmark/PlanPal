@@ -10,6 +10,7 @@ import { Task } from "@/types/task"
 import AddTaskButton from "@/components/basic/addTaskButton"
 import Link from "next/link"
 import HeaderClear from "@/components/headerClear"
+import Main from "@/components/basic/main"
 
 interface Props {}
 
@@ -46,12 +47,16 @@ const Category: NextPage<Props> = ({}) => {
   // end boilerplate for page //
 
   return (
-    <div>
-      <HeaderClear currentPage={currentPage} />
-      <DisplayToDoCategory title={title}></DisplayToDoCategory>
-      <Link href={"/toDo/addTask"}>
-        <AddTaskButton></AddTaskButton>
-      </Link>
+    <div className="h-screen bg-ourcolors-blue">
+      <Header currentPage={currentPage} bright={true} link="/toDo" />
+      <Main>
+        {" "}
+        <DisplayToDoCategory title={title}></DisplayToDoCategory>
+        <Link href={"/toDo/addTask"}>
+          <AddTaskButton></AddTaskButton>
+        </Link>
+      </Main>
+
       <NavBar currentPage={currentPage} />
     </div>
   )

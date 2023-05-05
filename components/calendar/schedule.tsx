@@ -1,13 +1,16 @@
 import { Calendar } from "@/types/calendar"
 import TaskBoxCard from "../basic/taskBoxCard"
 import { useEffect, useRef } from "react"
+import Image from "next/image"
 
 interface Props {
   calendar: Calendar
   date: Date
+  toggle: boolean
+  setToggled: (toogle: boolean) => void
 }
 
-const Schedule = ({ calendar, date }: Props) => {
+const Schedule = ({ calendar, date, setToggled, toggle }: Props) => {
   const currentTimeRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -16,6 +19,11 @@ const Schedule = ({ calendar, date }: Props) => {
       currentTimeRef.current.scrollIntoView({ behavior: "smooth" })
     }
   }, [])
+
+  const handleToggle = () => {
+    setToggled(!toggle)
+    console.log(toggle)
+  }
 
   const hours = () => {
     const hours = []
@@ -192,10 +200,22 @@ const Schedule = ({ calendar, date }: Props) => {
     return <div className="mt-3">{hours}</div>
   }
 
+  const toggleSize = () => {
+    if (toggle) {
+      return "max-h-[100%]"
+    }
+    return "max-h-[60%]"
+  }
+
   return (
-    <TaskBoxCard className="flex flex-col w-screen max-h-screen mt-4 overflow-hidden">
-      <h2>Today</h2>
-      <div className="flex flex-row justify-between w-full h-screen mb-20 overflow-y-auto">
+    <TaskBoxCard
+      className={`flex flex-col w-screen ${toggleSize()}  overflow-hidden`}
+    >
+      <button onClick={handleToggle} className="self-center">
+        <Image src={"/upLine.svg"} alt={"#"} width={60} height={5}></Image>
+      </button>
+      <h2 className="justify-self-start">Today</h2>
+      <div className="flex flex-row justify-between w-full h-screen mb-16 overflow-y-auto">
         <div className="w-[15%] flex flex-col">{hours()}</div>
         <div className="w-[80%]">{hourlySchedule()}</div>
       </div>
