@@ -45,11 +45,17 @@ const initialCategory = [
   },
 ]
 
+const initialCalendar = {
+  id: "",
+  userId: "",
+  activites: [],
+}
+
 const initialUserContext: UserContextProps = {
   user: initialUser,
   currentPage: "",
   toDo: { category: initialCategory },
-  calendar: { id: "1" },
+  calendar: initialCalendar,
   setUser: () => {},
   setCurrentPage: () => {},
   setToDo: () => {},
@@ -67,7 +73,7 @@ const UserContextProvider: React.FC<UserProviderProps> = ({ children }) => {
   const [toDo, setToDo] = useState<ToDo>({
     category: initialCategory,
   }) // This should be changed to Database later
-  const [calendar, setCalendar] = useState<Calendar>({ id: "1" })
+  const [calendar, setCalendar] = useState<Calendar>(initialCalendar)
 
   // Connect
   const contextValue: UserContextProps = {
