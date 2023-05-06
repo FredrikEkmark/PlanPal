@@ -6,6 +6,7 @@ import { User } from "@/types/user"
 import { GetServerSidePropsContext, NextPage } from "next"
 import { getSession } from "next-auth/react"
 import { useContext, useEffect } from "react"
+import CalendarCard from "@/components/calendar/calendarCard"
 
 interface Data {
   user: User
@@ -47,7 +48,10 @@ const Index: NextPage<Props> = ({ data }) => {
   return (
     <div>
       <Header currentPage={currentPage} />
-      <p>{toDo.category[0].title}</p>
+      {/*} <p>{toDo.category[0].title}</p>*/}
+
+      <CalendarCard />
+
       <NavBar currentPage={currentPage} />
     </div>
   )
