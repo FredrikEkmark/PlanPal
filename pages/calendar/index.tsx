@@ -8,6 +8,9 @@ import { User } from "@/types/user"
 import { GetServerSidePropsContext, NextPage } from "next"
 import { now } from "next-auth/client/_utils"
 import { getSession } from "next-auth/react"
+
+
+import CalendarCard from "@/components/calendar/calendarCard"
 import { useContext, useEffect, useState } from "react"
 
 interface Data {
@@ -76,6 +79,7 @@ const Index: NextPage<Props> = ({ data }) => {
   const [toggle, setToggle] = useState<boolean>(false)
 
   return (
+
     <div className="h-screen bg-ourcolors-blue">
       <Header currentPage={currentPage} bright={true} />
       <Main>

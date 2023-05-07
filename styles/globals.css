@@ -6,3 +6,111 @@ body {
   background-color: #f8f8f8;
   font-family: "Quicksand", sans-serif;
 }
+
+.react-calendar {
+  width: 100%; /*Denna ändrar så det blir ovalt, fixa det!*/
+  max-width: 100%;
+  background-color: #057fa8;
+  color: #f8f8f8;
+  line-height: 1.825em;
+  text-align: center;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-bottom: 20px;
+}
+.react-calendar__navigation button {
+  color: #ffffff;
+  min-width: 34px;
+  background: none;
+  font-size: 20px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.react-calendar__navigation button:enabled:hover,
+.react-calendar__navigation button:enabled:focus {
+  background-color: transparent;
+}
+.react-calendar__navigation button[disabled] {
+  background-color: transparent;
+}
+abbr[title] {
+  text-decoration: none;
+}
+/* ÄNDRAR HELGENS FÄRGER 
+.react-calendar__month-view__days__day--weekend {
+  color: #d10000;
+}
+*/
+.react-calendar__tile:enabled:hover,
+.react-calendar__tile:enabled:focus {
+  background: #f8f8fa;
+  color: #ffffff;
+  border-radius: 50%;
+}
+
+/* DENNA ÄNDRAR DAGENS DATUM */
+.react-calendar__tile--now {
+  /* background: #c53c2a; */
+  border-radius: 50%;
+  font-weight: bold;
+  color: black;
+}
+.react-calendar__tile--now:enabled:hover,
+.react-calendar__tile--now:enabled:focus {
+  background: #fff;
+  border-radius: 50%;
+  font-weight: bold;
+  color: #ffffff;
+}
+.react-calendar__tile--hasActive:enabled:hover,
+.react-calendar__tile--hasActive:enabled:focus {
+  background: #f8f8fa;
+  border-radius: 50%;
+}
+
+.react-calendar__tile--active {
+  background: #ffffff;
+  border-radius: 50%;
+  font-weight: bold;
+  color: #057fa8;
+}
+
+/* DENNA ÄNDRAR MARKERINGEN PÅ DATUMET */
+.react-calendar__tile--active:enabled:hover,
+.react-calendar__tile--active:enabled:focus {
+  background: #ffffff;
+  color: #057fa8;
+}
+
+/* ANVÄNDER HUR LÅNGT SPANN MELLAN DATUM OCH MARKERAR DEM
+.react-calendar--selectRange .react-calendar__tile--hover {
+  background-color: #f8f8fa;
+}
+
+.react-calendar__tile--range {
+  background: black;
+  color: #fff;
+  border-radius: 0;
+}
+
+.react-calendar__tile--rangeStart {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  background: #ffffff;
+  color: white;
+}
+
+.react-calendar__tile--rangeEnd {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  background: black;
+  color: white;
+}
+*/
