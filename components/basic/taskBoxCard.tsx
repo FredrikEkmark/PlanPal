@@ -9,7 +9,7 @@ interface Props {
 const TaskBoxCard = (props: Props) => {
   return (
     <div
-      className={`${props.className} p-[5%] w-full bg-ourcolors-offWhite rounded-t-[30px]`}
+      className={`${props.className} p-[5%] w-full bg-ourcolors-offWhite rounded-t-[30px] flex-grow`}
     >
       {props.children}
     </div>

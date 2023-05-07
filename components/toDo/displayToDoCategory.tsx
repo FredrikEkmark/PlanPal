@@ -155,8 +155,8 @@ const DisplayToDoCategory = (props: Props) => {
   ))
 
   return (
-    <div className={`w-full h-full  bg-ourcolors-blue`}>
-      <div className="flex p-[5%] pt-8 pb-6 ">
+    <div className={`w-full h-full flex flex-col bg-ourcolors-blue`}>
+      <div className="flex p-[5%]  pb-6 ">
         <Image
           src={"/clipBoardWhite.svg"}
           alt={"#"}
@@ -182,7 +182,7 @@ const DisplayToDoCategory = (props: Props) => {
         )}
         {todayTasks.length > 0 ? (
           <div>
-            <p className="font-semibold  text-hs text-ourcolors-font">Today</p>
+            <p className="font-semibold text-hs text-ourcolors-font">Today</p>
             {displayTodayTasks}
           </div>
         ) : (
@@ -190,7 +190,7 @@ const DisplayToDoCategory = (props: Props) => {
         )}
         {upcomingTasks.length > 0 ? (
           <div>
-            <p className="font-semibold  text-hs text-ourcolors-font">
+            <p className="font-semibold text-hs text-ourcolors-font">
               Upcomming
             </p>
             {displayUpcomingTasks}

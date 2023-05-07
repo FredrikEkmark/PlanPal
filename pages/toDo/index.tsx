@@ -7,6 +7,7 @@ import { User } from "@/types/user"
 import { GetServerSidePropsContext, NextPage } from "next"
 import { useContext, useEffect } from "react"
 import { getSession, useSession } from "next-auth/react"
+import Main from "@/components/basic/main"
 
 interface Data {
   user: User
@@ -48,8 +49,9 @@ const Index: NextPage<Props> = ({ data }) => {
   return (
     <div>
       <Header currentPage={currentPage} />
-      <ToDoCategories categorys={toDo.category} />
-
+      <Main>
+        <ToDoCategories categorys={toDo.category} />
+      </Main>
       <NavBar currentPage={currentPage} />
     </div>
   )
