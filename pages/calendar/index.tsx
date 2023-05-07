@@ -1,4 +1,5 @@
 import Main from "@/components/basic/main"
+import CalendarCard from "@/components/calendar/calendarCard"
 import Schedule from "@/components/calendar/schedule"
 import Header from "@/components/header"
 import NavBar from "@/components/navBar"
@@ -8,9 +9,6 @@ import { User } from "@/types/user"
 import { GetServerSidePropsContext, NextPage } from "next"
 import { now } from "next-auth/client/_utils"
 import { getSession } from "next-auth/react"
-
-
-import CalendarCard from "@/components/calendar/calendarCard"
 import { useContext, useEffect, useState } from "react"
 
 interface Data {
@@ -32,7 +30,7 @@ const Index: NextPage<Props> = ({ data }) => {
       {
         id: "58383",
         calendarId: "fasjfja",
-        date: new Date(now()).toISOString().slice(0, 10) as string,
+        date: new Date().toISOString().slice(0, 10) as string,
         startTime: "07:30",
         endTime: "08:30",
         name: "Lektion",
@@ -41,7 +39,7 @@ const Index: NextPage<Props> = ({ data }) => {
       {
         id: "58383",
         calendarId: "fasjfja",
-        date: new Date(now()).toISOString().slice(0, 10) as string,
+        date: new Date().toISOString().slice(0, 10) as string,
         startTime: "08:30",
         endTime: "10:30",
         name: "Super Tidig Lunch",
@@ -77,15 +75,15 @@ const Index: NextPage<Props> = ({ data }) => {
   // end boilerplate for page //
 
   const [toggle, setToggle] = useState<boolean>(false)
+  const [date, setDate] = useState<Date>(new Date())
 
   return (
-
     <div className="h-screen bg-ourcolors-blue">
       <Header currentPage={currentPage} bright={true} />
       <Main>
-        {toggle ? <></> : <div className="w-full h-[40%] bg-slate-500"></div>}
+        {toggle ? <></> : <CalendarCard onClickDay={setDate} date={date} />}
         <Schedule
-          date={new Date(now())}
+          date={date}
           calendar={tempCalendar}
           toggle={toggle}
           setToggled={setToggle}
