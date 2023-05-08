@@ -1,6 +1,7 @@
 import { User } from "@/types/user"
 
 import Image from "next/image"
+import UserCircle from "../basic/userCircle"
 
 interface Props {
   user: User
@@ -10,7 +11,7 @@ interface Props {
 const ProfileCard = ({ user, logout }: Props) => {
   return (
     <div>
-      <div className="flex justify-center w-full pt-12">
+      <div className="flex flex-col items-center w-full pt-12">
         <p className="text-hm">{user.firstName}</p>
       </div>
       <div className="flex flex-col w-full p-[5%] border-t-2 my-2">

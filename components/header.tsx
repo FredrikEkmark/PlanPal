@@ -1,5 +1,8 @@
 import Image from "next/image"
 import Link from "next/link"
+import UserCircle from "./basic/userCircle"
+import { useContext } from "react"
+import { UserContext } from "@/context/user-context-provider"
 
 interface Props {
   currentPage: string
@@ -9,13 +12,17 @@ interface Props {
 
 const HeaderClear = ({ currentPage, link, bright }: Props) => {
   let arrow = "/blackArrow.svg"
-  let user = "/user.svg"
+  let userImg = "/user.svg"
   let text = "text-ourcolors-black"
+  let profileColor
+
+  const { user } = useContext(UserContext)
 
   if (bright) {
     arrow = "/whiteArrow.svg"
-    user = "/whiteUser.svg"
+    userImg = "/whiteUser.svg"
     text = "text-ourcolors-white"
+    profileColor = "white"
   }
   return (
     <div className=" bg-transparent h-12 w-[100%] fixed flex items-center justify-between px-[5%]">
@@ -36,13 +43,21 @@ const HeaderClear = ({ currentPage, link, bright }: Props) => {
         {currentPage.charAt(0).toUpperCase() + currentPage.slice(1)}
       </h1>
       <Link href={"/profile"}>
-        <Image
-          src={user}
-          alt={"#"}
-          width="20"
-          height="22"
-          style={{ width: "auto", height: "30px" }}
-        ></Image>
+        {!user.firstName ? (
+          <Image
+            src={userImg}
+            alt={"#"}
+            width="20"
+            height="22"
+            style={{ width: "auto", height: "30px" }}
+          ></Image>
+        ) : (
+          <UserCircle
+            username={user.firstName}
+            size={34}
+            color={profileColor}
+          ></UserCircle>
+        )}
       </Link>
     </div>
   )
