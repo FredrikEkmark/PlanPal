@@ -93,7 +93,7 @@ const Schedule = ({ calendar, date, setToggled, toggle }: Props) => {
           info = (
             <>
               <p className="text-bm text-ourcolors-purple">
-                {activity.startTime}-{activity.endTime}
+                {activity.startTime} - {activity.endTime}
               </p>
               <h3 className="text-bl text-ourcolors-black">{activity.name}</h3>
               <p className="text-bm text-ourcolors-font">

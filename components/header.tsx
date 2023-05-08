@@ -35,13 +35,15 @@ const HeaderClear = ({ currentPage, link, bright }: Props) => {
       <h1 className={text}>
         {currentPage.charAt(0).toUpperCase() + currentPage.slice(1)}
       </h1>
-      <Image
-        src={user}
-        alt={"#"}
-        width="20"
-        height="22"
-        style={{ width: "auto", height: "30px" }}
-      ></Image>
+      <Link href={"/profile"}>
+        <Image
+          src={user}
+          alt={"#"}
+          width="20"
+          height="22"
+          style={{ width: "auto", height: "30px" }}
+        ></Image>
+      </Link>
     </div>
   )
 }
