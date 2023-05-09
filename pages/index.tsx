@@ -1,3 +1,5 @@
+import DashboardCalendar from "@/components/basic/dashboardCalendar"
+import Main from "@/components/basic/main"
 import Header from "@/components/header"
 import NavBar from "@/components/navBar"
 import { UserContext } from "@/context/user-context-provider"
@@ -63,7 +65,9 @@ const Index: NextPage<Props> = ({ data }) => {
   return (
     <div>
       <Header currentPage={currentPage} />
-
+      <Main>
+        <DashboardCalendar />
+      </Main>
       <NavBar currentPage={currentPage} />
     </div>
   )
