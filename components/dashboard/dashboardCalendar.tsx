@@ -1,11 +1,15 @@
 import { NextPage } from "next"
+import Link from "next/link"
 
 interface Props {}
 
 const DashboardCalendar: NextPage<Props> = ({}) => {
   return (
     <>
-      <p className="mb-2 ml-6 text-hm">Calendar</p>
+      <div className="mx-[5%] flex justify-between items-center">
+        <p className="mb-2 text-hm">Calendar</p>
+        <Link href={"/calendar"}>see full</Link>
+      </div>
 
       <div className="slides">
         <div id="slide-1">

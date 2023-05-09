@@ -12,10 +12,8 @@ const DashboardCalendarCard = (props: Props) => {
   return (
     <div>
       <div className="flex justify-between w-[90%] mx-[5%]">
-        <p className="text-hm font-medium">Calendar</p>
-        <p className="text-hxs font-semibold text-ourcolors-purple">
-          <Link href={"/calendar"}>see full</Link>
-        </p>
+        <p className="font-medium text-hm">Calendar</p>
+        <p className="font-semibold text-hxs text-ourcolors-purple"></p>
       </div>
 
       <div className="flex justify-between">

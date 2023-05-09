@@ -1,19 +1,15 @@
-import DashboardCalendar from "@/components/basic/dashboardCalendar"
+import DashboardCalendar from "@/components/dashboard/dashboardCalendar"
 import Main from "@/components/basic/main"
 import DisplayDashboardToDo from "@/components/dashboard/displayDashboardToDo"
 import Header from "@/components/header"
 import NavBar from "@/components/navBar"
-import DisplayToDoCategory from "@/components/toDo/displayToDoCategory"
-import ToDoCategories from "@/components/toDo/toDoCategories"
 import { UserContext } from "@/context/user-context-provider"
 import { ToDo } from "@/types/toDo"
 import { User } from "@/types/user"
 import { GetServerSidePropsContext, NextPage } from "next"
 import { getSession } from "next-auth/react"
 import { useContext, useEffect, useState } from "react"
-import DashboardTaskCard from "@/components/dashboard/dashboardTaskCard"
 import DashboardWelcome from "@/components/dashboard/dashboardWelcome"
-import DashboardCalendarCard from "@/components/dashboard/dashboardCalendarCard"
 
 interface Data {
   user: User
@@ -47,7 +43,8 @@ const Index: NextPage<Props> = ({ data }) => {
       setCurrentPage("home")
       setUser(data.user)
       setToDo(data.toDo)
-    } // set name of folder so navBar know where you are
+    },
+    [] // set name of folder so navBar know where you are
   )
 
   // end boilerplate for page //
@@ -71,15 +68,10 @@ const Index: NextPage<Props> = ({ data }) => {
   return (
     <div>
       <Header currentPage={currentPage} />
-      <DashboardWelcome username={user.firstName}></DashboardWelcome>
-
-      <DashboardTaskCard></DashboardTaskCard>
-
-      <DashboardCalendarCard></DashboardCalendarCard>
-
       <Main>
-        <DashboardCalendar />
+        <DashboardWelcome username={user.firstName}></DashboardWelcome>
         <DisplayDashboardToDo toDo={toDo}></DisplayDashboardToDo>
+        <DashboardCalendar />
       </Main>
       <NavBar currentPage={currentPage} />
     </div>

@@ -17,11 +17,14 @@ const DisplayDashboardToDo = ({ toDo }: Props) => {
 
   useEffect(() => {
     const allTasks = toDo.category.flatMap((category) => category.toDoList)
-    const now = new Date().toISOString().slice(0, 10) // Get today's date in the format YYYY-MM-DD
     setTasks(allTasks)
+  }, [toDo])
+
+  useEffect(() => {
+    const now = new Date().toISOString().slice(0, 10) // Get today's date in the format YYYY-MM-DD
     const today = tasks.filter((task) => task.date === now)
     setTodayTasks(today)
-  }, [])
+  }, [tasks])
 
   const checkHandler = (event: ChangeEvent<HTMLInputElement>) => {
     const originalTask = tasks.find((task) => task.id === event.target.id)
@@ -57,7 +60,7 @@ const DisplayDashboardToDo = ({ toDo }: Props) => {
   ))
 
   return (
-    <div className="w-full pt-20">
+    <div className="w-full">
       <div className="mx-[5%] flex justify-between items-center">
         <h2 className=" text-hl">Todays Tasks</h2>
         <Link className="text-ourcolors-purple text-bm" href={"/toDo"}>
