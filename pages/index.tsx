@@ -68,7 +68,7 @@ const Index: NextPage<Props> = ({ data }) => {
   return (
     <div>
       <Header currentPage={currentPage} />
-      <DashboardWelcome username={"Joseph Jostar"}></DashboardWelcome>
+      <DashboardWelcome username={""}></DashboardWelcome>
 
       <DashboardTaskCard></DashboardTaskCard>
 
