@@ -1,16 +1,21 @@
 import Image from "next/image"
 import { useState } from "react"
 
-interface Props {}
+interface Props {
+  username: string
+}
 
-const dashboardWelcome = (props: Props) => {
+const DashboardWelcome = (props: Props) => {
   return (
-    <div className="flex flex-col">
-      <p className="w-[90%] mx-[5%] -mb-2">Welcome,</p>
-      <p className="w-[90%] mx-[5%] text-hm font-semibold mb-5">Erik Jansson</p>
-      {/* ta in namn från DB i den andra p taggen */}
+    <div className="flex flex-col py-[5%]">
+      <div className="mt-4">
+        <p className="w-[90%] mx-[5%]  -mb-2">Welcome,</p>
+        <p className="w-[90%] mx-[5%] text-hm font-semibold mb-5">
+          {props.username}
+        </p>
+      </div>
     </div>
   )
 }
 
-export default dashboardWelcome
+export default DashboardWelcome

@@ -19,20 +19,6 @@ const DashboardTaskCard = (props: Props) => {
 
       <Box>
         <DashboardDisplayTodaysTask title={""} />
-        {/* <label className="flex items-center space-x-2 text-hs">
-          <input type="checkbox" className="form-checkbox" />
-          <span className="text-gray-700">Text next to checkbox</span>
-        </label>
-
-        <label className="flex items-center space-x-2 text-hs">
-          <input type="checkbox" className="form-checkbox" />
-          <span className="text-gray-700">Text next to checkbox</span>
-        </label>
-
-        <label className="flex items-center space-x-2 text-hs">
-          <input type="checkbox" className="form-checkbox" />
-          <span className="text-gray-700">Text next to checkbox</span>
-        </label> */}
       </Box>
     </div>
   )
