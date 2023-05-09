@@ -1,11 +1,15 @@
+import Main from "@/components/basic/main"
+import CalendarCard from "@/components/calendar/calendarCard"
+import Schedule from "@/components/calendar/schedule"
 import Header from "@/components/header"
 import NavBar from "@/components/navBar"
 import { UserContext } from "@/context/user-context-provider"
 import { ToDo } from "@/types/toDo"
 import { User } from "@/types/user"
 import { GetServerSidePropsContext, NextPage } from "next"
+import { now } from "next-auth/client/_utils"
 import { getSession } from "next-auth/react"
-import { useContext, useEffect } from "react"
+import { useContext, useEffect, useState } from "react"
 
 interface Data {
   user: User
@@ -18,6 +22,32 @@ interface Props {
 }
 
 const Index: NextPage<Props> = ({ data }) => {
+  // temp code //
+  const tempCalendar = {
+    id: "",
+    userId: "",
+    activites: [
+      {
+        id: "58383",
+        calendarId: "fasjfja",
+        date: new Date().toISOString().slice(0, 10) as string,
+        startTime: "07:30",
+        endTime: "08:30",
+        name: "Lektion",
+        description: "I skolan",
+      },
+      {
+        id: "58383",
+        calendarId: "fasjfja",
+        date: new Date("2023-05-09").toISOString().slice(0, 10) as string,
+        startTime: "08:30",
+        endTime: "10:30",
+        name: "Super Tidig Lunch",
+        description: "Ät Lunch",
+      },
+    ],
+  }
+
   // start boilerplate for page //
 
   const {
@@ -44,10 +74,29 @@ const Index: NextPage<Props> = ({ data }) => {
 
   // end boilerplate for page //
 
+  const [toggle, setToggle] = useState<boolean>(false)
+  const [date, setDate] = useState<Date>(new Date())
+
+  const handleDateChange = (date: Date) => {
+    setDate(new Date(date.getTime() + 12 * 60 * 60 * 1000))
+  }
+
   return (
-    <div>
-      <Header currentPage={currentPage} />
-      <p>{toDo.category[0].title}</p>
+    <div className="h-screen bg-ourcolors-blue">
+      <Header currentPage={currentPage} bright={true} />
+      <Main>
+        {toggle ? (
+          <></>
+        ) : (
+          <CalendarCard onClickDay={handleDateChange} date={date} />
+        )}
+        <Schedule
+          date={date}
+          calendar={tempCalendar}
+          toggle={toggle}
+          setToggled={setToggle}
+        />
+      </Main>
       <NavBar currentPage={currentPage} />
     </div>
   )

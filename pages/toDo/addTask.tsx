@@ -2,6 +2,7 @@ import Box from "@/components/basic/box"
 import Button from "@/components/basic/button"
 import InputCategory from "@/components/basic/inputCategroy"
 import InputDate from "@/components/basic/inputDate"
+import Main from "@/components/basic/main"
 import Header from "@/components/header"
 import AddTaskCard from "@/components/toDo/addTaskCard"
 import { UserContext } from "@/context/user-context-provider"
@@ -13,9 +14,11 @@ interface Props {}
 
 const AddTask: NextPage<Props> = ({}) => {
   return (
-    <div>
-      <Header currentPage={"Create Task"}></Header>
-      <AddTaskCard />
+    <div className="h-screen">
+      <Header currentPage={"Add Task"} link="/toDo" />
+      <Main>
+        <AddTaskCard />
+      </Main>
     </div>
   )
 }

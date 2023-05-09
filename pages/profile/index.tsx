@@ -1,13 +1,12 @@
 import Header from "@/components/header"
 import NavBar from "@/components/navBar"
-import ToDoCategories from "@/components/toDo/toDoCategories"
+import ProfileCard from "@/components/profile/profileCard"
 import { UserContext } from "@/context/user-context-provider"
 import { ToDo } from "@/types/toDo"
 import { User } from "@/types/user"
 import { GetServerSidePropsContext, NextPage } from "next"
+import { getSession, signOut } from "next-auth/react"
 import { useContext, useEffect } from "react"
-import { getSession, useSession } from "next-auth/react"
-import Main from "@/components/basic/main"
 
 interface Data {
   user: User
@@ -19,7 +18,7 @@ interface Props {
   data: Data
 }
 
-const Index: NextPage<Props> = ({ data }) => {
+const Index: NextPage<Props> = ({ data }: Props) => {
   // start boilerplate for page //
 
   const {
@@ -38,7 +37,6 @@ const Index: NextPage<Props> = ({ data }) => {
 
   useEffect(
     () => {
-      setCurrentPage("todo")
       setUser(data.user)
       setToDo(data.toDo)
     } // set name of folder so navBar know where you are
@@ -46,12 +44,23 @@ const Index: NextPage<Props> = ({ data }) => {
 
   // end boilerplate for page //
 
+  const URLCurrentPage = () => {
+    if (currentPage === "todo") {
+      return "/toDo"
+    } else if (currentPage === "calendar") {
+      return "/calendar"
+    }
+    return "/"
+  }
+
+  const logout = async () => {
+    await signOut({ redirect: true, callbackUrl: "/auth/signin" })
+  }
+
   return (
     <div>
-      <Header currentPage={currentPage} />
-      <Main>
-        <ToDoCategories categorys={toDo.category} />
-      </Main>
+      <Header currentPage={"Profile"} link={URLCurrentPage()} />
+      <ProfileCard user={user} logout={logout} />
       <NavBar currentPage={currentPage} />
     </div>
   )
@@ -60,6 +69,7 @@ const Index: NextPage<Props> = ({ data }) => {
 export default Index
 
 // start of boilerpalte getServerSideProps
+
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { req } = context
   const session = await getSession({ req })

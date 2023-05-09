@@ -1,5 +1,6 @@
 import Box from "@/components/basic/box"
 import InputDate from "@/components/basic/inputDate"
+import Main from "@/components/basic/main"
 import Header from "@/components/header"
 import HeaderClear from "@/components/headerClear"
 import AddTaskCard from "@/components/toDo/addTaskCard"
@@ -15,9 +16,11 @@ const Task: NextPage<Props> = ({}) => {
   const value = router.query.task as string
 
   return (
-    <div>
-      <HeaderClear currentPage={"Edit Task"} />
-      <EditTaskCard id={value} />
+    <div className="h-screen">
+      <Header currentPage={"Edit Task"} link="/toDo" />
+      <Main>
+        <EditTaskCard id={value} />
+      </Main>
     </div>
   )
 }

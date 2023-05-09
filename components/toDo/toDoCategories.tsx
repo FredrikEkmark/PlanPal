@@ -36,7 +36,7 @@ const ToDoCategories = (props: Props) => {
   ))
 
   return (
-    <div className="m-[5%] ">
+    <div className="mx-[5%] ">
       <h2>Lists</h2>
       <div className="flex flex-wrap justify-between">
         <CategoryBox className="" href="/toDo/category/all">
