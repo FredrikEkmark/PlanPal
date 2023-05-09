@@ -19,12 +19,12 @@ const UserCircle = ({ username, large, color }: Props) => {
 
   if (large) {
     circleSize = `h-32 w-32`
-    textSize = `text-pl`
+    textSize = `text-pl `
   }
 
   return (
     <div
-      className={` ${circleSize} flex justify-center items-center ${text} ${textSize} rounded-full ${bgColor}`}
+      className={` ${circleSize} flex justify-center font-bold items-center ${text} ${textSize} rounded-full ${bgColor}`}
     >
       {username.charAt(0).toUpperCase()}
     </div>
