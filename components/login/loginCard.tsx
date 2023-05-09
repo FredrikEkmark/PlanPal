@@ -55,7 +55,7 @@ const LoginCard = ({}) => {
     const result = await signIn("credentials", {
       email,
       password,
-      callbackUrl: "/toDo",
+      callbackUrl: "/",
       redirect: false,
     })
     if (result === undefined) {
@@ -64,7 +64,7 @@ const LoginCard = ({}) => {
     if (result.error) {
       setError("Wrong credentials")
     } else {
-      router.push("/toDo")
+      router.push("/")
     }
   }
 
