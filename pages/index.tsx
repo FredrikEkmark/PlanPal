@@ -1,3 +1,4 @@
+import DisplayDashboardToDo from "@/components/dashboard/displayDashboardToDo"
 import Header from "@/components/header"
 import NavBar from "@/components/navBar"
 import { UserContext } from "@/context/user-context-provider"
@@ -63,7 +64,7 @@ const Index: NextPage<Props> = ({ data }) => {
   return (
     <div>
       <Header currentPage={currentPage} />
-
+      <DisplayDashboardToDo toDo={toDo}></DisplayDashboardToDo>
       <NavBar currentPage={currentPage} />
     </div>
   )
