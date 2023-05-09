@@ -2,36 +2,31 @@ import { NextPage } from "next"
 
 interface Props {
   username: string
-  size?: number
+  large?: boolean
   color?: string
 }
 
-const UserCircle = ({ username, size, color }: Props) => {
-  let diameter = 120
+const UserCircle = ({ username, large, color }: Props) => {
   let bgColor = "bg-ourcolors-blue"
-  let textColor = "text-ourcolors-white"
-
-  if (size) {
-    diameter = size
-  }
+  let text = "text-ourcolors-white"
+  let circleSize = `h-8 w-8`
+  let textSize = `text-hs`
 
   if (color) {
     bgColor = "bg-ourcolors-" + color
-    textColor = "text-ourcolors-blue"
+    text = "text-ourcolors-blue"
   }
 
-  function capitalizeFirstLetter(str: string): string {
-    const firstLetter = str.charAt(0).toUpperCase()
-    return firstLetter
+  if (large) {
+    circleSize = `h-32 w-32`
+    textSize = `text-pl`
   }
-
-  const circleSize = `h-[${diameter}px] w-[${diameter}px]`
 
   return (
     <div
-      className={`${circleSize} flex justify-center items-center  ${textColor} rounded-full ${bgColor}`}
+      className={` ${circleSize} flex justify-center items-center ${text} ${textSize} rounded-full ${bgColor}`}
     >
-      {capitalizeFirstLetter(username)}
+      {username.charAt(0).toUpperCase()}
     </div>
   )
 }

@@ -54,7 +54,6 @@ const HeaderClear = ({ currentPage, link, bright }: Props) => {
         ) : (
           <UserCircle
             username={user.firstName}
-            size={34}
             color={profileColor}
           ></UserCircle>
         )}

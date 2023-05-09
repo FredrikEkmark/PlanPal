@@ -12,6 +12,11 @@ const ProfileCard = ({ user, logout }: Props) => {
   return (
     <div>
       <div className="flex flex-col items-center w-full pt-12">
+        {!user.firstName ? (
+          <></>
+        ) : (
+          <UserCircle large={true} username={user.firstName} />
+        )}
         <p className="text-hm">{user.firstName}</p>
       </div>
       <div className="flex flex-col w-full p-[5%] border-t-2 my-2">

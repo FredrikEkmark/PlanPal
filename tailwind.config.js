@@ -18,6 +18,7 @@ module.exports = {
       bm: "0.875rem",
       bl: "1rem",
       bxl: "1.25rem",
+      pl: "6rem",
     },
     extend: {
       fontFamily: {
