@@ -39,7 +39,7 @@ const Index: NextPage<Props> = ({ data }) => {
       {
         id: "58383",
         calendarId: "fasjfja",
-        date: new Date().toISOString().slice(0, 10) as string,
+        date: new Date("2023-05-09").toISOString().slice(0, 10) as string,
         startTime: "08:30",
         endTime: "10:30",
         name: "Super Tidig Lunch",
@@ -77,11 +77,19 @@ const Index: NextPage<Props> = ({ data }) => {
   const [toggle, setToggle] = useState<boolean>(false)
   const [date, setDate] = useState<Date>(new Date())
 
+  const handleDateChange = (date: Date) => {
+    setDate(new Date(date.getTime() + 12 * 60 * 60 * 1000))
+  }
+
   return (
     <div className="h-screen bg-ourcolors-blue">
       <Header currentPage={currentPage} bright={true} />
       <Main>
-        {toggle ? <></> : <CalendarCard onClickDay={setDate} date={date} />}
+        {toggle ? (
+          <></>
+        ) : (
+          <CalendarCard onClickDay={handleDateChange} date={date} />
+        )}
         <Schedule
           date={date}
           calendar={tempCalendar}

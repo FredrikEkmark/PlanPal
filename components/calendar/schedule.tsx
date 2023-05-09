@@ -22,7 +22,6 @@ const Schedule = ({ calendar, date, setToggled, toggle }: Props) => {
 
   const handleToggle = () => {
     setToggled(!toggle)
-    console.log(toggle)
   }
 
   const hours = () => {
@@ -214,7 +213,7 @@ const Schedule = ({ calendar, date, setToggled, toggle }: Props) => {
       <button onClick={handleToggle} className="self-center">
         <Image src={"/upLine.svg"} alt={"#"} width={60} height={5}></Image>
       </button>
-      <h2 className="justify-self-start">Today</h2>
+      <h2 className="mb-2 justify-self-start">{date.toDateString()}</h2>
       <div className="flex flex-row justify-between w-full h-screen mb-16 overflow-y-auto">
         <div className="w-[15%] flex flex-col">{hours()}</div>
         <div className="w-[80%]">{hourlySchedule()}</div>

@@ -7,21 +7,14 @@ interface Props {
   onClickDay: (date: Date) => void
 }
 
-const CalendarCard: NextPage<Props> = ({ onClickDay, date }: Props) => {
-  useEffect(() => {
-    console.log(date)
-  }, [date])
-
+const CalendarCard = ({ onClickDay, date }: Props) => {
   return (
     <>
       <div className={`w-full h-[40%] bg-ourcolors-blue`}>
         <div className="uppercase">
           <div className="text-center">
-            <Calendar onClickDay={onClickDay} value={date} />
+            <Calendar locale="en-GB" onClickDay={onClickDay} value={date} />
           </div>
-          <p className="text-center text-white ">
-            <span className="bold"></span> {date.toDateString()}
-          </p>
         </div>
       </div>
     </>
