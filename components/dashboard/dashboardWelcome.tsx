@@ -2,7 +2,7 @@ import Image from "next/image"
 import { useState } from "react"
 
 interface Props {
-  username: string
+  username: string | null | undefined
 }
 
 const DashboardWelcome = (props: Props) => {

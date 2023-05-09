@@ -1,4 +1,3 @@
-
 import DashboardCalendar from "@/components/basic/dashboardCalendar"
 import Main from "@/components/basic/main"
 import DisplayDashboardToDo from "@/components/dashboard/displayDashboardToDo"
@@ -72,7 +71,7 @@ const Index: NextPage<Props> = ({ data }) => {
   return (
     <div>
       <Header currentPage={currentPage} />
-      <DashboardWelcome username={""}></DashboardWelcome>
+      <DashboardWelcome username={user.firstName}></DashboardWelcome>
 
       <DashboardTaskCard></DashboardTaskCard>
 

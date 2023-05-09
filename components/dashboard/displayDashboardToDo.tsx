@@ -21,7 +21,7 @@ const DisplayDashboardToDo = ({ toDo }: Props) => {
     setTasks(allTasks)
     const today = tasks.filter((task) => task.date === now)
     setTodayTasks(today)
-  }, [tasks, toDo])
+  }, [])
 
   const checkHandler = (event: ChangeEvent<HTMLInputElement>) => {
     const originalTask = tasks.find((task) => task.id === event.target.id)
