@@ -62,8 +62,8 @@ const DisplayDashboardToDo = ({ toDo }: Props) => {
   return (
     <div className="w-full">
       <div className="mx-[5%] flex justify-between items-center">
-        <h2 className=" text-hl">Todays Tasks</h2>
-        <Link className="text-ourcolors-purple text-bm" href={"/toDo"}>
+        <h2 className=" text-hm">Todays Tasks</h2>
+        <Link className="text-ourcolors-purple text-hxs" href={"/toDo"}>
           View all
         </Link>
       </div>

@@ -4,10 +4,10 @@ import Schedule from "@/components/calendar/schedule"
 import Header from "@/components/header"
 import NavBar from "@/components/navBar"
 import { UserContext } from "@/context/user-context-provider"
+import { tempSchedule } from "@/functions/tempData/tempSchedule"
 import { ToDo } from "@/types/toDo"
 import { User } from "@/types/user"
 import { GetServerSidePropsContext, NextPage } from "next"
-import { now } from "next-auth/client/_utils"
 import { getSession } from "next-auth/react"
 import { useContext, useEffect, useState } from "react"
 
@@ -22,32 +22,6 @@ interface Props {
 }
 
 const Index: NextPage<Props> = ({ data }) => {
-  // temp code //
-  const tempCalendar = {
-    id: "",
-    userId: "",
-    activites: [
-      {
-        id: "58383",
-        calendarId: "fasjfja",
-        date: new Date().toISOString().slice(0, 10) as string,
-        startTime: "07:30",
-        endTime: "08:30",
-        name: "Lektion",
-        description: "I skolan",
-      },
-      {
-        id: "58383",
-        calendarId: "fasjfja",
-        date: new Date("2023-05-09").toISOString().slice(0, 10) as string,
-        startTime: "08:30",
-        endTime: "10:30",
-        name: "Super Tidig Lunch",
-        description: "Ät Lunch",
-      },
-    ],
-  }
-
   // start boilerplate for page //
 
   const {
@@ -92,7 +66,7 @@ const Index: NextPage<Props> = ({ data }) => {
         )}
         <Schedule
           date={date}
-          calendar={tempCalendar}
+          calendar={tempSchedule()}
           toggle={toggle}
           setToggled={setToggle}
         />

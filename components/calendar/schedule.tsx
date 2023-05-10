@@ -160,7 +160,7 @@ const Schedule = ({ calendar, date, setToggled, toggle }: Props) => {
         <>
           {activity ? (
             <div className="relative flex justify-center">
-              <div key={i} className={`${border} h-8 w-full `}>
+              <div key={i + "hIndex"} className={`${border} h-8 w-full `}>
                 {isCurrentTime ? (
                   <div
                     ref={currentTimeRef}
@@ -179,7 +179,7 @@ const Schedule = ({ calendar, date, setToggled, toggle }: Props) => {
               </div>
             </div>
           ) : (
-            <div key={i} className={`${border} h-8 w-full `}>
+            <div key={i + "hIndex"} className={`${border} h-8 w-full `}>
               {isCurrentTime ? (
                 <div
                   ref={currentTimeRef}

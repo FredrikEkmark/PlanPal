@@ -80,44 +80,44 @@ const RegisterUserCard = ({}) => {
           ></Image>
         </div>
       </div>
-      <div className="flex justify-center mt-7 mb-9 ">
+      <div className="flex justify-center mt-4 mb-9 ">
         <h1 className="font-semibold text-hm">Hello! Sign up to get started</h1>
       </div>
 
       <form
-        className="mt-2 mx-[5%] flex flex-col items-center"
+        className="mt-1 mx-[5%] flex flex-col items-center"
         onSubmit={handleSubmit}
       >
         {" "}
         <InputText
-          className="my-2 "
+          className="my-1 "
           type="name"
           placeholder="Full Name"
           initialValue={firstname}
           onChange={handleFirstnameChange} // La till denna
         />
         <InputText
-          className="my-2 "
+          className="my-1 "
           type="email"
           placeholder="Email"
           initialValue={email}
           onChange={handleEmailChange}
         />
         <InputText
-          className="my-2 "
+          className="my-1 "
           type="password"
           placeholder="Password"
           initialValue={password}
           onChange={handlePasswordChange}
         />
         <InputText
-          className="my-2 "
+          className="my-1 "
           type="password"
           placeholder="Confirm password"
           initialValue={confirmPassword}
           onChange={handleConfirmPasswordChange}
         />
-        <Button className="w-full my-8 " color={"blue"}>
+        <Button className="w-full my-1 " color={"blue"}>
           Sign Up!
         </Button>
         <div className="relative flex flex-col items-center w-screen">
