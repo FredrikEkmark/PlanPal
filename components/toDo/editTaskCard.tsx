@@ -8,7 +8,7 @@ import DoubleTextInput from "../basic/doubleTextInput"
 import Box from "../basic/box"
 import { getTaskById } from "@/functions/getTaskById"
 import { Task } from "@/types/task"
-import { getCategoryById } from "@/functions/checkIfLoggedIn"
+import { getCategoryById } from "@/functions/getCategoryById"
 
 interface Props {
   id: string
