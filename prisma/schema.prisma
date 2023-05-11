@@ -35,9 +35,20 @@ model User {
   email       String      @unique @db.VarChar(255)
   password    String      @db.VarChar(32)
   firstName   String?     @db.VarChar(32)
-  lastName    String?     @db.VarChar(32)
   categories  Category[]
   createdAt   DateTime    @default(now())
   updatedAt   DateTime    @updatedAt
+  calendar    Calendar[]
+}
+
+model Calendar {
+  id          String  @id @default(cuid())
+  name        String  @db.VarChar(32)
+  description String? @db.VarChar(255)
+  startTime   String  @db.VarChar(32)
+  endTime     String  @db.VarChar(32)
+  date        String
+  userId      String
+  user        User    @relation(fields: [userId], references: [id])
 }
 

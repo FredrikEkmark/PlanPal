@@ -44,7 +44,6 @@ const RegisterUserCard = ({}) => {
       email: email,
       password: password,
       firstName: firstname,
-      lastName: "",
     }
 
     const response = await fetch(`../api/user/post`, {
