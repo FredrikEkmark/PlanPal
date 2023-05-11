@@ -53,7 +53,7 @@ export const createStandardCategories = async (
 
     method: "POST", // byter metod till POST
     credentials: "include" as RequestCredentials,
-    body: JSON.stringify(schoolBody),
+    body: JSON.stringify(otherBody),
     headers: {
       "Content-Type": "application/json",
       Authorization: authHeader,
