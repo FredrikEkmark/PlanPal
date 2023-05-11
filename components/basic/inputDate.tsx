@@ -17,7 +17,9 @@ const InputDate = (props: Props) => {
   }
 
   return (
-    <div className={`flex p-2 border-2 rounded-[10px] ${props.className}`}>
+    <div
+      className={`flex p-2 border-2 rounded-[10px] w-[90%] mx-[5%] ${props.className}`}
+    >
       <label className="flex px-1 text-ourcolors-font" htmlFor="dateInput">
         <p className="px-1"></p>
         {"Date"}:{" "}
