@@ -11,5 +11,5 @@ export type Activity = {
   startTime: string
   endTime: string
   name: string
-  description: string
+  description?: string
 }
