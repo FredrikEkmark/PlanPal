@@ -10,7 +10,6 @@ import { GetServerSidePropsContext, NextPage } from "next"
 import { getSession } from "next-auth/react"
 import { useContext, useEffect, useState } from "react"
 import DashboardWelcome from "@/components/dashboard/dashboardWelcome"
-import { tempSchedule } from "@/functions/tempData/tempSchedule"
 import { Calendar } from "@/types/calendar"
 
 interface Data {
