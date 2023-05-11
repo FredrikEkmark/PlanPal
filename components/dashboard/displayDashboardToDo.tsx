@@ -68,7 +68,13 @@ const DisplayDashboardToDo = ({ toDo }: Props) => {
         </Link>
       </div>
 
-      <Box>{displayTodayTasks}</Box>
+      {displayTodayTasks.length > 0 ? (
+        <Box>{displayTodayTasks}</Box>
+      ) : (
+        <Box>
+          <p>You have no tasks</p>
+        </Box>
+      )}
     </div>
   )
 }

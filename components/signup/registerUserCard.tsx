@@ -6,6 +6,7 @@ import Button from "../basic/button"
 import { useState } from "react"
 import Link from "next/link"
 import router from "next/router"
+import { createStandardCategories } from "@/functions/createStandardCategories"
 
 interface Props {}
 
@@ -61,6 +62,12 @@ const RegisterUserCard = ({}) => {
     const data = JSON.parse(JSON.stringify(json.result))
 
     if (data.email === email) {
+      const categories = createStandardCategories(
+        data.id,
+        data.email,
+        data.password
+      )
+      console.log(categories)
       router.push("/toDo") // Här skickas vi vidare till Home
     } else {
       console.log(data)
