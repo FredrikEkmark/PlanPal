@@ -132,6 +132,7 @@ abbr[title] {
 }
 
 .modal-box {
+  display: block;
   background: white;
   margin-bottom: -285px;
   width: 375px;

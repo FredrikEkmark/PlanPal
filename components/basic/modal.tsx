@@ -9,16 +9,7 @@ interface ModalType {
   isOpen: boolean
   toggle: () => void
 }
-
-export default function Modal(props: ModalType) {
-  return (
-    <>
-      {props.isOpen && (
-        <div className="modal-overlay" onClick={props.toggle}>
-          <div className="modal-box">
-            {props.children}
-
-            <Box>
+/*     <Box>
               <DoubleTextInput
                 initialValueTop={""}
                 initialValueBottom={""}
@@ -41,7 +32,16 @@ export default function Modal(props: ModalType) {
             <SmallButton className=" absolute ml-[25%] my-10" color={"blue"}>
               {" "}
               Create{" "}
-            </SmallButton>
+            </SmallButton> */
+
+export default function Modal(props: ModalType) {
+  return (
+    <>
+      {props.isOpen && (
+        <div className="modal-overlay" onClick={props.toggle}>
+          {" "}
+          <div onClick={(e) => e.stopPropagation()} className="modal-box">
+            {props.children}
           </div>
         </div>
       )}
