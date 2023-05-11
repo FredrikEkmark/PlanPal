@@ -66,7 +66,6 @@ async function main(
       email: user.email,
       password: user.password,
       firstName: user.firstName,
-      lastName: user.lastName,
     } as User,
     toDo: { category: toDoCategories } as ToDo,
     calendar: { id: "1" } as Calendar,
