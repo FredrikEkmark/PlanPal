@@ -14,6 +14,11 @@ import { getSession } from "next-auth/react"
 import { useContext, useEffect, useState } from "react"
 import useModal from "@/components/basic/useModal"
 import Image from "next/image"
+import DoubleTextInput from "@/components/basic/doubleTextInput"
+import Box from "@/components/basic/box"
+import InputDate from "@/components/basic/inputDate"
+import SmallButton from "@/components/basic/smallButton"
+import AddTaskCard from "@/components/toDo/addTaskCard"
 
 interface Data {
   user: User
@@ -90,7 +95,11 @@ const Index: NextPage<Props> = ({ data }) => {
               height={"21"}
             ></Image>
           </button>
-          <Modal isOpen={isOpen} toggle={toggle1}></Modal>
+
+          <Modal isOpen={isOpen} toggle={toggle1}>
+            {/* Skapa en AddCalendarActivityCard*/}
+            <AddTaskCard></AddTaskCard>
+          </Modal>
         </div>
       </Main>
       <NavBar currentPage={currentPage} />
