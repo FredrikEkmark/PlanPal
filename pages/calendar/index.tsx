@@ -1,4 +1,6 @@
+import AddTaskButton from "@/components/basic/addTaskButton"
 import Main from "@/components/basic/main"
+import Modal from "@/components/basic/modal"
 import CalendarCard from "@/components/calendar/calendarCard"
 import Schedule from "@/components/calendar/schedule"
 import Header from "@/components/header"
@@ -10,6 +12,8 @@ import { User } from "@/types/user"
 import { GetServerSidePropsContext, NextPage } from "next"
 import { getSession } from "next-auth/react"
 import { useContext, useEffect, useState } from "react"
+import useModal from "@/components/basic/useModal"
+import Image from "next/image"
 
 interface Data {
   user: User
@@ -55,6 +59,8 @@ const Index: NextPage<Props> = ({ data }) => {
     setDate(new Date(date.getTime() + 12 * 60 * 60 * 1000))
   }
 
+  const { isOpen, toggle1 } = useModal()
+
   return (
     <div className="h-screen bg-ourcolors-blue">
       <Header currentPage={currentPage} bright={true} />
@@ -70,6 +76,22 @@ const Index: NextPage<Props> = ({ data }) => {
           toggle={toggle}
           setToggled={setToggle}
         />
+        {/* HÄR LIGGER MODEL */}
+        <div className="App">
+          <button
+            className="@apply fixed bottom-[100px] mr-[5%] right-0 bg-ourcolors-blue h-[66px] w-[66px] flex justify-center items-center rounded-full"
+            onClick={toggle1}
+          >
+            <Image
+              className="absolut"
+              src={"/plusWhite.svg"}
+              alt={"#"}
+              width={"21"}
+              height={"21"}
+            ></Image>
+          </button>
+          <Modal isOpen={isOpen} toggle={toggle1}></Modal>
+        </div>
       </Main>
       <NavBar currentPage={currentPage} />
     </div>

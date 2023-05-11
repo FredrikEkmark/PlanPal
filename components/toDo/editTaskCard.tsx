@@ -77,7 +77,7 @@ const EditTaskCard = (props: Props) => {
       done: originalTask.done,
     }
     editTask(editedTask)
-    console.log("handle submithas been called " + editedTask.id)
+    console.log("handle submit has been called " + editedTask.id)
   }
 
   function handleDelete() {
