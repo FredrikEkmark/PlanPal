@@ -302,7 +302,7 @@ export default async function handler(
   )
   if (result) {
     if (result.success) {
-      res.status(200).json({ result: JSON.parse(JSON.stringify(result)) })
+      res.status(200).json({ result: JSON.parse(JSON.stringify(result.body)) })
     } else {
       res.status(400).json({ result: JSON.parse(JSON.stringify(result)) })
     }

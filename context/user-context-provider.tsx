@@ -16,7 +16,7 @@ interface UserContextProps {
   user: User
   currentPage: string
   toDo: ToDo
-  calendar: Calendar | undefined
+  calendar: Calendar
   setUser: (user: User) => void
   setCurrentPage: (currentPage: string) => void
   setToDo: (toDo: ToDo) => void

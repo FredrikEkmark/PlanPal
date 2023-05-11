@@ -18,7 +18,6 @@ type UserBody = {
   email: string
   password: string
   firstName: string | undefined
-  lastName: string | undefined
 }
 
 type UserImport = {
@@ -59,7 +58,6 @@ async function main(
         email: body.email,
         password: body.password,
         firstName: body.firstName,
-        lastName: body.lastName,
       },
     }
     const user = await prisma.user.create(postBody)

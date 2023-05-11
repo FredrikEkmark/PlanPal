@@ -2,6 +2,7 @@ import Header from "@/components/header"
 import NavBar from "@/components/navBar"
 import ProfileCard from "@/components/profile/profileCard"
 import { UserContext } from "@/context/user-context-provider"
+import { Calendar } from "@/types/calendar"
 import { ToDo } from "@/types/toDo"
 import { User } from "@/types/user"
 import { GetServerSidePropsContext, NextPage } from "next"
@@ -11,7 +12,7 @@ import { useContext, useEffect } from "react"
 interface Data {
   user: User
   toDo: ToDo
-  calendar: string | null
+  calendar: Calendar
 }
 
 interface Props {
@@ -39,6 +40,7 @@ const Index: NextPage<Props> = ({ data }: Props) => {
     () => {
       setUser(data.user)
       setToDo(data.toDo)
+      setCalendar(data.calendar)
     } // set name of folder so navBar know where you are
   )
 
@@ -115,7 +117,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       data: {
         user: data.user,
         toDo: data.toDo,
-        calendar: null,
+        calendar: data.calendar,
       },
     },
   }

@@ -5,6 +5,7 @@ import Header from "@/components/header"
 import NavBar from "@/components/navBar"
 import { UserContext } from "@/context/user-context-provider"
 import { tempSchedule } from "@/functions/tempData/tempSchedule"
+import { Calendar } from "@/types/calendar"
 import { ToDo } from "@/types/toDo"
 import { User } from "@/types/user"
 import { GetServerSidePropsContext, NextPage } from "next"
@@ -14,7 +15,7 @@ import { useContext, useEffect, useState } from "react"
 interface Data {
   user: User
   toDo: ToDo
-  calendar: string | null
+  calendar: Calendar
 }
 
 interface Props {
@@ -66,7 +67,7 @@ const Index: NextPage<Props> = ({ data }) => {
         )}
         <Schedule
           date={date}
-          calendar={tempSchedule()}
+          calendar={calendar}
           toggle={toggle}
           setToggled={setToggle}
         />
@@ -124,7 +125,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       data: {
         user: data.user,
         toDo: data.toDo,
-        calendar: null,
+        calendar: data.calendar,
       },
     },
   }

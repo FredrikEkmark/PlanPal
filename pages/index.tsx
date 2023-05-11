@@ -11,11 +11,12 @@ import { getSession } from "next-auth/react"
 import { useContext, useEffect, useState } from "react"
 import DashboardWelcome from "@/components/dashboard/dashboardWelcome"
 import { tempSchedule } from "@/functions/tempData/tempSchedule"
+import { Calendar } from "@/types/calendar"
 
 interface Data {
   user: User
   toDo: ToDo
-  calendar: string | null
+  calendar: Calendar
 }
 
 interface Props {
@@ -44,6 +45,7 @@ const Index: NextPage<Props> = ({ data }) => {
       setCurrentPage("home")
       setUser(data.user)
       setToDo(data.toDo)
+      setCalendar(data.calendar)
     },
     [] // set name of folder so navBar know where you are
   )
@@ -72,7 +74,7 @@ const Index: NextPage<Props> = ({ data }) => {
       <Main>
         <DashboardWelcome username={user.firstName}></DashboardWelcome>
         <DisplayDashboardToDo toDo={toDo}></DisplayDashboardToDo>
-        <DashboardCalendar calendar={tempSchedule()} />
+        <DashboardCalendar calendar={calendar} />
       </Main>
       <NavBar currentPage={currentPage} />
     </div>
@@ -128,7 +130,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       data: {
         user: data.user,
         toDo: data.toDo,
-        calendar: null,
+        calendar: data.calendar,
       },
     },
   }

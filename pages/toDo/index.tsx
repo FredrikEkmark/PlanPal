@@ -8,11 +8,12 @@ import { GetServerSidePropsContext, NextPage } from "next"
 import { useContext, useEffect } from "react"
 import { getSession, useSession } from "next-auth/react"
 import Main from "@/components/basic/main"
+import { Calendar } from "@/types/calendar"
 
 interface Data {
   user: User
   toDo: ToDo
-  calendar: string | null
+  calendar: Calendar
 }
 
 interface Props {
@@ -41,6 +42,7 @@ const Index: NextPage<Props> = ({ data }) => {
       setCurrentPage("todo")
       setUser(data.user)
       setToDo(data.toDo)
+      setCalendar(data.calendar)
     } // set name of folder so navBar know where you are
   )
 
@@ -105,7 +107,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       data: {
         user: data.user,
         toDo: data.toDo,
-        calendar: null,
+        calendar: data.calendar,
       },
     },
   }

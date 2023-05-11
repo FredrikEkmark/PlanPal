@@ -15,11 +15,15 @@ import { Category } from "@/types/category"
 type UserData = {
   user: User
   toDo: ToDo
-  calendar: Calendar | undefined
+  calendar: Calendar
 }
 
 type Data = {
-  result: UserData | string
+  result: {
+    success: boolean
+    error?: string
+    body?: UserData
+  }
 }
 
 async function main(
@@ -30,8 +34,18 @@ async function main(
   const user = await prisma.user.findUnique({
     where: { id: userId },
   })
+
+  if (!user) {
+    return {
+      success: false,
+      error: "No user found",
+    }
+  }
   if (!(user?.password === password && user?.email === email)) {
-    return "NOT AUTHERIZED"
+    return {
+      success: false,
+      error: "NOT AUTHERIZED",
+    }
   }
 
   const categories = await prisma.category.findMany({
@@ -60,6 +74,28 @@ async function main(
     })
   )
 
+  const calendarActivities = await prisma.calendar.findMany({
+    where: { userId: userId },
+  })
+
+  calendarActivities
+
+  const activites = calendarActivities.map((item) => ({
+    id: item.id,
+    calendarId: "calendar1",
+    date: item.date,
+    startTime: item.startTime,
+    endTime: item.endTime,
+    name: item.name,
+    ...(item.description && { description: item.description }),
+  }))
+
+  const calendar = {
+    id: "calendar1",
+    userId: user.id,
+    activites: activites,
+  }
+
   const data = {
     user: {
       id: user.id,
@@ -68,9 +104,9 @@ async function main(
       firstName: user.firstName,
     } as User,
     toDo: { category: toDoCategories } as ToDo,
-    calendar: { id: "1" } as Calendar,
+    calendar: calendar,
   }
-  return data
+  return { success: true, body: data }
 }
 
 export default async function handler(
@@ -79,14 +115,18 @@ export default async function handler(
 ) {
   const authHeader = req.headers.authorization
   if (!authHeader) {
-    return res.status(401).json({ result: "Missing Authorization header" })
+    return res.status(401).json({
+      result: { success: false, error: "Missing Authorization header" },
+    })
   }
 
   const authType = authHeader.split(" ")[0]
   const authValue = authHeader.split(" ")[1]
 
   if (authType !== "Basic") {
-    return res.status(401).json({ result: "Invalid Authorization type" })
+    return res
+      .status(401)
+      .json({ result: { success: false, error: "Invalid Authorization type" } })
   }
 
   const [email, password] = Buffer.from(authValue, "base64")
@@ -97,8 +137,17 @@ export default async function handler(
 
   const result = await main(id as string, email, password)
   if (result) {
-    res.status(200).json({ result: JSON.parse(JSON.stringify(result)) })
+    if (result.success) {
+      res.status(200).json({ result: JSON.parse(JSON.stringify(result.body)) })
+    } else {
+      res.status(400).json({ result: JSON.parse(JSON.stringify(result)) })
+    }
   } else {
-    res.status(500).json({ result: "No user found" })
+    res.status(500).json({
+      result: {
+        success: false,
+        error: "Server failure",
+      },
+    })
   }
 }
