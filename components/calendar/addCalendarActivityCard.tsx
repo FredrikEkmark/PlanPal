@@ -1,32 +1,18 @@
 import { NextPage } from "next"
 import InputDate from "../basic/inputDate"
-import InputCategory from "../basic/inputCategroy"
 import { useContext, useEffect, useState } from "react"
 import { UserContext } from "@/context/user-context-provider"
-import Task from "@/pages/toDo/task/[task]"
 import { randomUUID } from "crypto"
 import Link from "next/link"
 import DoubleTextInput from "../basic/doubleTextInput"
 import Box from "../basic/box"
 import SmallButton from "../basic/smallButton"
+import InputTimeEnd from "../basic/inputTimeEnd"
+import InputTimeStart from "../basic/inputTimeStart"
 
 interface Props {}
 
-const AddTaskCard = ({}) => {
-  const {
-    user,
-    setUser,
-    currentPage,
-    setCurrentPage,
-    toDo,
-    setToDo,
-    addTask,
-    editTask,
-    deleteTask,
-    calendar,
-    setCalendar,
-  } = useContext(UserContext)
-
+const AddCalendarActivityCard = ({}) => {
   const [titleInput, setTitleInput] = useState<string>("")
 
   function handleTitleInput(newValue: string) {
@@ -47,29 +33,27 @@ const AddTaskCard = ({}) => {
     setDateInput(newValue)
   }
 
-  const [categoryInput, setCategoryInput] = useState<string>("")
+  const [startTimeInput, setStartTimeInput] = useState<string>("")
 
-  function handleCategoryInput(newValue: string) {
-    setCategoryInput(newValue)
+  function handleStartTimeInput(newValue: string) {
+    setStartTimeInput(newValue)
+  }
+  const [endTimeInput, setEndTimeInput] = useState<string>("")
+
+  function handleEndTimeInput(newValue: string) {
+    setEndTimeInput(newValue)
   }
 
   function handleSubmit() {
-    const categoryId = toDo.category.find(
-      (category) => category.title === categoryInput
-    )?.id
-    if (categoryId === undefined) {
-      return "Error no such category"
-    }
-    const newTask = {
+    const newActivity = {
       title: titleInput,
       description: descriptionInput,
       id: `${Math.random()}`, // this should be changed
-      categoryId: categoryId,
       date: dateInput,
+      start: startTimeInput,
+      end: endTimeInput,
       done: false,
     }
-    addTask(categoryInput, newTask, user)
-    console.log("handle submithas been called " + newTask.id)
   }
   return (
     <div>
@@ -87,19 +71,24 @@ const AddTaskCard = ({}) => {
           initialValue={dateInput}
           onChange={handleDateInput}
         />
-        <InputCategory
+        <InputTimeStart
           className="w-full my-2"
-          categories={toDo.category}
-          onChange={handleCategoryInput}
-          initialValue={categoryInput}
+          initialValue={startTimeInput}
+          onChange={handleStartTimeInput}
         />
-        <Link href={"/toDo"}>
+        <InputTimeEnd
+          className="w-full my-2"
+          initialValue={endTimeInput}
+          onChange={handleEndTimeInput}
+        />
+
+        <Link href={"/calendar"}>
           <SmallButton
-            className="my-4 mt-8"
+            className="my-2 mt-3"
             onClick={handleSubmit}
             color={"blue"}
           >
-            Save
+            Create
           </SmallButton>
         </Link>
       </Box>
@@ -107,4 +96,4 @@ const AddTaskCard = ({}) => {
   )
 }
 
-export default AddTaskCard
+export default AddCalendarActivityCard
