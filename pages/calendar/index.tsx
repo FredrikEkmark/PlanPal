@@ -19,6 +19,7 @@ import Box from "@/components/basic/box"
 import InputDate from "@/components/basic/inputDate"
 import SmallButton from "@/components/basic/smallButton"
 import AddTaskCard from "@/components/toDo/addTaskCard"
+import AddCalendarActivityCard from "@/components/calendar/addCalendarActivityCard"
 
 interface Data {
   user: User
@@ -97,8 +98,7 @@ const Index: NextPage<Props> = ({ data }) => {
           </button>
 
           <Modal isOpen={isOpen} toggle={toggle1}>
-            {/* Skapa en AddCalendarActivityCard*/}
-            <AddTaskCard></AddTaskCard>
+            <AddCalendarActivityCard></AddCalendarActivityCard>
           </Modal>
         </div>
       </Main>
