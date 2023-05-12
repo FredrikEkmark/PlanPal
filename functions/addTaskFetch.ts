@@ -32,22 +32,24 @@ export async function addTaskFetch(task: Task, user: User): Promise<Task> {
 
   const res = await fetch(url, requestOptions)
   const json = await res.json()
-  const data = JSON.parse(JSON.stringify(json.result))
+  const data = JSON.parse(JSON.stringify(json))
 
-  console.log(data)
+  if (data.result.success) {
+    const date = new Date(data.result.body.date as string)
+      .toISOString()
+      .slice(0, 10)
 
-  const date = new Date(data.date as string).toISOString().slice(0, 10)
+    const postedTask: Task = {
+      date: date,
+      id: data.result.body.id as string,
+      categoryId: data.result.body.categoryId as string,
+      title: data.result.body.title as string,
+      description: data.result.body.description as string | null,
+      done: data.result.body.done as boolean,
+    }
 
-  const postedTask: Task = {
-    date: date,
-    id: data.id as string,
-    categoryId: data.categoryId as string,
-    title: data.title as string,
-    description: data.description as string | null,
-    done: data.done as boolean,
+    return postedTask
   }
-
-  console.log(postedTask)
-
-  return postedTask
+  console.log(data.result.error)
+  return data.result.success
 }

@@ -138,7 +138,7 @@ export default async function handler(
   const result = await main(id as string, email, password)
   if (result) {
     if (result.success) {
-      res.status(200).json({ result: JSON.parse(JSON.stringify(result.body)) })
+      res.status(200).json({ result: JSON.parse(JSON.stringify(result)) })
     } else {
       res.status(400).json({ result: JSON.parse(JSON.stringify(result)) })
     }
