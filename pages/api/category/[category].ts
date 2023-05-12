@@ -26,7 +26,11 @@ type CategoryImport = {
 }
 
 type Data = {
-  result: CategoryImport | string
+  result: {
+    success: boolean
+    error: string
+    body?: CategoryImport
+  }
 }
 
 async function main(
@@ -41,106 +45,169 @@ async function main(
   })
 
   if (!(user?.password === password)) {
-    return "NOT AUTHORIZED"
+    return {
+      success: false,
+      error: "NOT AUTHORIZED",
+    }
   }
 
-  switch (method) {
-    case "GET": {
-      if (id == undefined) {
-        return "Id not provided"
+  try {
+    switch (method) {
+      // GET
+      case "GET": {
+        if (id == undefined) {
+          return {
+            success: false,
+            error: "Id not provided",
+          }
+        }
+        const category = await prisma.category.findUnique({
+          where: { id: id },
+        })
+        if (!category) {
+          return {
+            success: false,
+            error: "ERROR no Category",
+          }
+        }
+        if (category.userId !== user.id) {
+          return {
+            success: false,
+            error: "NOT AUTHORIZED",
+          }
+        }
+        return {
+          success: true,
+          body: category,
+        }
       }
-      const category = await prisma.category.findUnique({
-        where: { id: id },
-      })
-      if (!category) {
-        return "ERROR"
-      }
-      if (category.userId !== user.id) {
-        return "NOT AUTHORIZED"
-      }
-      return category
-    }
-    case "POST": {
-      if (!body?.title) {
-        return `Title is required in Body ${body}`
-      }
-      const postBody = {
-        data: {
-          title: body.title,
-          color: body.color,
-          userId: user.id,
-        },
-      }
-      const category = await prisma.category.create(postBody)
-      if (!category) {
-        return "ERROR"
-      }
-      return category
-    }
-    case "PATCH": {
-      if (id == undefined) {
-        return "Id not provided"
-      }
-      const category = await prisma.category.findUnique({
-        where: { id: id },
-      })
-      if (!category) {
-        return "ERROR"
-      }
-      if (category.userId !== user.id) {
-        return "NOT AUTHORIZED"
-      }
-      let title = ""
-      let color: string | null = null
+      // POST
+      case "POST": {
+        if (!body) {
+          return { success: false, error: "Body is required" }
+        }
+        if (!body.title) {
+          return { success: false, error: "Title is required in Body" }
+        }
 
-      if (!body?.title) {
-        title = category.title
-      } else {
-        title = body.title
+        const postBody = {
+          data: {
+            title: body.title,
+            color: body.color,
+            userId: user.id,
+          },
+        }
+        const category = await prisma.category.create(postBody)
+        if (!category) {
+          return {
+            success: false,
+            error: "ERROR no Category",
+          }
+        }
+        return {
+          success: true,
+          body: category,
+        }
       }
-      if (!body?.color) {
-        color = category.color
-      } else {
-        color = body.color
-      }
+      // PATCH
+      case "PATCH": {
+        if (id == undefined) {
+          return {
+            success: false,
+            error: "Id not provided",
+          }
+        }
+        const category = await prisma.category.findUnique({
+          where: { id: id },
+        })
+        if (!category) {
+          return {
+            success: false,
+            error: "Error no Category found",
+          }
+        }
+        if (category.userId !== user.id) {
+          return {
+            success: false,
+            error: "NOT AUTHERIZED",
+          }
+        }
 
-      const postBody = {
-        where: { id: id },
-        data: {
-          title: title,
-          color: color,
-          userId: category.userId,
-        },
+        if (!body) {
+          return { success: false, error: "Body is required" }
+        }
+        let title = category.title
+
+        if (body.title) {
+          title = body.title
+        }
+
+        const postBody = {
+          where: { id: id },
+          data: {
+            title: title,
+            userId: category.userId,
+          },
+        }
+        const updatedCategory = await prisma.category.update(postBody)
+        if (!updatedCategory) {
+          return {
+            success: false,
+            error: "ERROR while patching Category",
+          }
+        }
+        return {
+          success: true,
+          body: updatedCategory,
+        }
       }
-      const updatedCategory = await prisma.category.update(postBody)
-      if (!updatedCategory) {
-        return "ERROR"
+      case "DELETE": {
+        if (id == undefined) {
+          return {
+            success: false,
+            error: "Id not provided",
+          }
+        }
+        const category = await prisma.category.findUnique({
+          where: { id: id },
+        })
+        if (!category) {
+          return {
+            success: false,
+            error: "ERROR no Category",
+          }
+        }
+        if (category.userId !== user.id) {
+          return {
+            success: false,
+            error: "NOT AUTHORIZED",
+          }
+        }
+        const deleteCategory = await prisma.category.delete({
+          where: { id: id },
+        })
+        if (!deleteCategory) {
+          return {
+            success: false,
+            error: "ERROR while deleting category",
+          }
+        }
+        return {
+          success: true,
+          body: deleteCategory,
+        }
       }
-      return updatedCategory
+      default: {
+        return {
+          success: false,
+          error: `Method ${method} Not Allowed`,
+        }
+      }
     }
-    case "DELETE": {
-      if (id == undefined) {
-        return "Id not provided"
-      }
-      const category = await prisma.category.findUnique({
-        where: { id: id },
-      })
-      if (!category) {
-        return "ERROR"
-      }
-      if (category.userId !== user.id) {
-        return "NOT AUTHORIZED"
-      }
-      const deleteCategory = await prisma.category.delete({
-        where: { id: id },
-      })
-      if (!deleteCategory) {
-        return "ERROR"
-      }
-      return deleteCategory
-    }
-    default: {
-      return `Method ${method} Not Allowed`
+  } catch (error) {
+    return {
+      success: false,
+      error: error,
     }
   }
 }
@@ -151,14 +218,24 @@ export default async function handler(
 ) {
   const authHeader = req.headers.authorization
   if (!authHeader) {
-    return res.status(401).json({ result: "Missing Authorization header" })
+    return res.status(401).json({
+      result: {
+        success: false,
+        error: "Missing Authorization header",
+      },
+    })
   }
 
   const authType = authHeader.split(" ")[0]
   const authValue = authHeader.split(" ")[1]
 
   if (authType !== "Basic") {
-    return res.status(401).json({ result: "Invalid Authorization type" })
+    return res.status(401).json({
+      result: {
+        success: false,
+        error: "Invalid Authorization type",
+      },
+    })
   }
 
   const [email, password] = Buffer.from(authValue, "base64")
@@ -176,8 +253,17 @@ export default async function handler(
     req.method
   )
   if (result) {
-    res.status(200).json({ result: JSON.parse(JSON.stringify(result)) })
+    if (result.success) {
+      res.status(200).json({ result: JSON.parse(JSON.stringify(result)) })
+    } else {
+      res.status(400).json({ result: JSON.parse(JSON.stringify(result)) })
+    }
   } else {
-    res.status(500).json({ result: "No categories found" })
+    res.status(500).json({
+      result: {
+        success: false,
+        error: "Server failure",
+      },
+    })
   }
 }

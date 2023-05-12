@@ -54,7 +54,7 @@ async function main(
   if (!(user?.password === password)) {
     return {
       success: false,
-      error: "Not Authorized",
+      error: "NOT AUTHORIZED",
     }
   }
   try {
@@ -248,6 +248,7 @@ async function main(
           body: updatedTask,
         }
       }
+      // DELETE
       case "DELETE": {
         if (id == undefined) {
           return {
