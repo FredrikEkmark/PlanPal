@@ -9,14 +9,22 @@ import { GetServerSidePropsContext, NextPage } from "next"
 import { getSession, signOut } from "next-auth/react"
 import { useContext, useEffect } from "react"
 
-interface Data {
+type UserData = {
   user: User
   toDo: ToDo
   calendar: Calendar
 }
 
+type FetchResult = {
+  result: {
+    success: boolean
+    error?: string
+    body?: UserData
+  }
+}
+
 interface Props {
-  data: Data
+  data: UserData
 }
 
 const Index: NextPage<Props> = ({ data }: Props) => {
@@ -101,25 +109,22 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   )
   const json = await res.json()
 
-  const data = JSON.parse(JSON.stringify(json.result)) as Data
+  const data = JSON.parse(JSON.stringify(json)) as FetchResult
+  console.log(data)
 
-  if (!(data.user && data.toDo && data.calendar)) {
+  if (data.result.success && data.result.body) {
+    return {
+      props: {
+        data: data.result.body,
+      },
+    }
+  } else {
     return {
       redirect: {
         destination: "/login",
         permanent: false,
       },
     }
-  }
-
-  return {
-    props: {
-      data: {
-        user: data.user,
-        toDo: data.toDo,
-        calendar: data.calendar,
-      },
-    },
   }
 }
 
