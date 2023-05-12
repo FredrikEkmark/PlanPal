@@ -55,7 +55,7 @@ export async function addTaskFetch(
   if (success) {
     return {
       success: success,
-      body: data,
+      body: data.body,
     }
   } else {
     return {

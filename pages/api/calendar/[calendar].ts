@@ -73,7 +73,7 @@ async function main(
         if (!calendarActivity) {
           return {
             success: false,
-            error: "ERROR no Task",
+            error: "ERROR no calendar activity",
           }
         }
         if (calendarActivity.userId !== user.id) {
@@ -91,6 +91,7 @@ async function main(
       case "POST": {
         let success = true
         let error = "is required in Body"
+        ;("")
         if (!body?.date) {
           success = false
           error = "date, " + error
@@ -201,7 +202,7 @@ async function main(
         if (!updatedCalendarActivity) {
           return {
             success: false,
-            error: "Error while patching new calendar activity",
+            error: "Error while patching calendar activity",
           }
         }
         return {
@@ -238,7 +239,7 @@ async function main(
         if (!deleteCalendarActivity) {
           return {
             success: false,
-            error: "Error while deleting new calendar activity",
+            error: "Error while deleting calendar activity",
           }
         }
         return {
@@ -254,7 +255,10 @@ async function main(
       }
     }
   } catch (error) {
-    console.log(error)
+    return {
+      success: false,
+      error: error,
+    }
   }
 }
 
@@ -302,7 +306,7 @@ export default async function handler(
   )
   if (result) {
     if (result.success) {
-      res.status(200).json({ result: JSON.parse(JSON.stringify(result.body)) })
+      res.status(200).json({ result: JSON.parse(JSON.stringify(result)) })
     } else {
       res.status(400).json({ result: JSON.parse(JSON.stringify(result)) })
     }

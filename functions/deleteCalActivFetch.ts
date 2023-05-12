@@ -32,14 +32,14 @@ export async function addTaskFetch(
 
   const res = await fetch(url, requestOptions)
   const json = await res.json()
-  const data = JSON.parse(JSON.stringify(json.result))
+  const data = JSON.parse(JSON.stringify(json))
 
   const success = data.id === activityId
 
   if (success) {
     return {
       success: success,
-      body: data,
+      body: data.body,
     }
   } else {
     return {
