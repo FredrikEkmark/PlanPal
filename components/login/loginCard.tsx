@@ -13,7 +13,8 @@ const LoginCard = ({}) => {
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const [error, setError] = useState<string | null>(null)
+  const [error, setError] = useState<string>("")
+  const [displayError, setDisplayError] = useState<string>("")
 
   function handleEmailChange(newValue: string) {
     setEmail(newValue)
@@ -22,32 +23,6 @@ const LoginCard = ({}) => {
   function handlePasswordChange(newValue: string) {
     setPassword(newValue)
   }
-
-  /*
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-
-    const authHeader = `Basic ${btoa(`${email}:${password}`)}`
-
-    const response = await fetch(`../api/login`, {
-      // Kolla om denna finns! //
-      method: "GET",
-      credentials: "include" as RequestCredentials,
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: authHeader,
-      },
-    })
-    const json = await response.json()
-    const data = JSON.parse(JSON.stringify(json.result))
-
-    if (data.email === email) {
-      router.push("/toDo") // Här skickas vi vidare till Home
-    }
-
-  }
-
-  */
 
   const handleSignIn = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -58,13 +33,32 @@ const LoginCard = ({}) => {
       callbackUrl: "/",
       redirect: false,
     })
+
     if (result === undefined) {
-      return
-    }
-    if (result.error) {
-      setError("Wrong credentials")
+      setDisplayError(
+        "The email address and password dose not match! Try again!"
+      )
     } else {
-      router.push("/")
+      if (result.ok) {
+        router.push("/")
+      } else if (result.error) {
+        setError(result.error)
+        switch (error) {
+          case "CredentialsSignin": {
+            setDisplayError(
+              "The email address and password dose not match! Try again!"
+            )
+          }
+          default: {
+            setDisplayError(
+              "The email address and password dose not match! Try again!"
+            )
+            // router.push("/error/500")
+          }
+        }
+      } else {
+        router.push("/error/500")
+      }
     }
   }
 
@@ -107,6 +101,7 @@ const LoginCard = ({}) => {
           initialValue={password}
           onChange={handlePasswordChange}
         />
+        <p className="text-ourcolors-red text-bs">{displayError}</p>
         <Button className="w-full my-8 " color={"blue"}>
           Login
         </Button>

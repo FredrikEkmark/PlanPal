@@ -12,7 +12,6 @@ interface UserAuthentication {
 }
 
 export default async function auth(req: NextApiRequest, res: NextApiResponse) {
-  await prisma
   return NextAuth(req, res, {
     providers: [
       CredentialsProvider({
