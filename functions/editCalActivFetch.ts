@@ -7,7 +7,7 @@ type Result = {
   body?: any
 }
 
-export async function addTaskFetch(
+export async function editCalActivFetch(
   activityId: string,
   updatedActivity: Activity,
   user: User

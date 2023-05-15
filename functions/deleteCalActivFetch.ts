@@ -7,7 +7,7 @@ type Result = {
   body?: any
 }
 
-export async function addTaskFetch(
+export async function deleteCalActivFetch(
   activityId: string,
   user: User
 ): Promise<Result> {

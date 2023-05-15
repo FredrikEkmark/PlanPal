@@ -19,6 +19,13 @@ const InputTimeStart = (props: Props) => {
       times.push(time)
     }
   }
+
+  function handleChange(value: string) {
+    const newValue = value
+    setTime(newValue)
+    props.onChange(newValue)
+  }
+
   return (
     <div
       className={`flex p-2 border-2 rounded-[10px] w-[90%] mx-[5%] ${props.className}`}
@@ -32,7 +39,7 @@ const InputTimeStart = (props: Props) => {
         id="time"
         name="time"
         value={time}
-        onChange={(event) => setTime(event.target.value)}
+        onChange={(event) => handleChange(event.target.value)}
       >
         <option className="" value="">
           Pick

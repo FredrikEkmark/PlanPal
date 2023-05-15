@@ -1,18 +1,20 @@
-import { NextPage } from "next"
 import InputDate from "../basic/inputDate"
-import { useContext, useEffect, useState } from "react"
-import { UserContext } from "@/context/user-context-provider"
-import { randomUUID } from "crypto"
+import { useContext, useState } from "react"
 import Link from "next/link"
 import DoubleTextInput from "../basic/doubleTextInput"
 import Box from "../basic/box"
 import SmallButton from "../basic/smallButton"
 import InputTimeEnd from "../basic/inputTimeEnd"
 import InputTimeStart from "../basic/inputTimeStart"
+import { Activity } from "@/types/calendar"
+import { UserContext } from "@/context/user-context-provider"
+import { addCalActivFetch } from "@/functions/addCalActivFetch"
 
 interface Props {}
 
 const AddCalendarActivityCard = ({}) => {
+  const { user, calendar } = useContext(UserContext)
+
   const [titleInput, setTitleInput] = useState<string>("")
 
   function handleTitleInput(newValue: string) {
@@ -44,21 +46,39 @@ const AddCalendarActivityCard = ({}) => {
     setEndTimeInput(newValue)
   }
 
-  function handleSubmit() {
-    const newActivity = {
-      title: titleInput,
+  async function handleSubmit() {
+    const [startHour, startMinute] = startTimeInput.split(":").map(Number)
+    const [endHour, endMinute] = endTimeInput.split(":").map(Number)
+
+    let totalMinutes = startHour * 60 + startMinute + endHour * 60 + endMinute
+
+    // Adjust the total minutes if it exceeds 24 hours (1440 minutes)
+    totalMinutes %= 1440
+
+    const endHours = Math.floor(totalMinutes / 60)
+    const endMinutes = totalMinutes % 60
+
+    const endTime = `${endHours.toString().padStart(2, "0")}:${endMinutes
+      .toString()
+      .padStart(2, "0")}`
+
+    const newActivity: Activity = {
+      name: titleInput,
+      id: "",
+      calendarId: calendar.id,
       description: descriptionInput,
-      id: `${Math.random()}`, // this should be changed
       date: dateInput,
-      start: startTimeInput,
-      end: endTimeInput,
-      done: false,
+      startTime: startTimeInput,
+      endTime: endTime,
     }
+    const result = await addCalActivFetch(newActivity, user)
+    console.log(result.success)
   }
   return (
     <div>
       <Box>
         <DoubleTextInput
+          topPlaceholder="Title"
           initialValueTop={titleInput}
           initialValueBottom={descriptionInput}
           onChangeTop={handleTitleInput}

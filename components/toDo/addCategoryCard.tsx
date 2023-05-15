@@ -36,6 +36,7 @@ const AddCategoryCard = ({}) => {
       {/* Box with inputfields, currently has the wrong descriptions */}
       <Box>
         <DoubleTextInput
+          topPlaceholder="Category"
           initialValueTop={categoryInput}
           initialValueBottom={colorInput}
           onChangeTop={handleCategoryInput}

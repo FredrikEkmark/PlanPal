@@ -87,6 +87,7 @@ const EditTaskCard = (props: Props) => {
     <div>
       <Box>
         <DoubleTextInput
+          topPlaceholder="Write a Task"
           initialValueTop={titleInput}
           initialValueBottom={descriptionInput}
           onChangeTop={handleTitleInput}

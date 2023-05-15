@@ -2,6 +2,7 @@ import { NextPage } from "next"
 import { useState } from "react"
 
 interface Props {
+  topPlaceholder: string
   initialValueTop: string
   initialValueBottom: string
   onChangeTop: (value: string) => void
@@ -31,7 +32,7 @@ const DoubleTextInput = (props: Props) => {
         className="w-full border-ourcolors-fonts border-b-[1px]"
         type="text"
         value={props.initialValueTop}
-        placeholder="Write a task"
+        placeholder={props.topPlaceholder}
         onChange={handleChangeTop}
       />
       <input

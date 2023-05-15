@@ -59,6 +59,7 @@ const StyleGuide: NextPage<Props> = ({}) => {
       <div className="flex flex-col items-center w-full my-4 p-[5%]">
         <h4>DoubleTextInput</h4>
         <DoubleTextInput
+          topPlaceholder="test"
           className="m-4"
           initialValueTop={""}
           initialValueBottom={""}

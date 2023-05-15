@@ -11,17 +11,22 @@ const InputTimeEnd = (props: Props) => {
   const [time, setTime] = useState(props.initialValue)
 
   const times = []
-  for (let hour = 0; hour < 3; hour++) {
-    for (let minute = 0; minute < 60; minute += 30) {
+  for (let hour = 0; hour < 4; hour++) {
+    let minute = 0
+    if (hour === 0) {
+      minute = 30
+    }
+    for (minute; minute < 60; minute += 30) {
       const time = `${hour.toString().padStart(2, "0")}:${minute
         .toString()
         .padStart(2, "0")}`
       times.push(time)
     }
   }
+  times.pop()
 
-  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-    const newValue = event.target.value
+  function handleChange(value: string) {
+    const newValue = value
     setTime(newValue)
     props.onChange(newValue)
   }
@@ -39,7 +44,7 @@ const InputTimeEnd = (props: Props) => {
         id="time"
         name="time"
         value={time}
-        onChange={(event) => setTime(event.target.value)}
+        onChange={(event) => handleChange(event.target.value)}
       >
         <option className="" value="">
           Pick
