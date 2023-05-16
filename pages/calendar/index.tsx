@@ -94,7 +94,7 @@ const Index: NextPage<Props> = ({ data }) => {
         {/* HÄR LIGGER MODEL */}
         <div className="App">
           <button
-            className="@apply fixed bottom-[100px] mr-[5%] right-0 bg-ourcolors-blue h-[66px] w-[66px] flex justify-center items-center rounded-full"
+            className="@apply fixed bottom-[100px] mr-[5%] right-0 bg-ourcolors-blue h-[50px] w-[50px] flex justify-center items-center rounded-full"
             onClick={toggle1}
           >
             <Image

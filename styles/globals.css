@@ -96,14 +96,14 @@ abbr[title] {
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
 
-  margin-left: 24px;
+  margin-left: 5%;
 }
 
 .slides > div {
   scroll-snap-align: start;
   flex-shrink: 0;
-  width: 165px;
-  height: 175px;
+  width: 145px;
+  height: 155px;
   margin-right: 12px;
   border-radius: 10px;
 

@@ -7,7 +7,7 @@ interface Props {
 
 const HeaderClear = (props: Props) => {
   return (
-    <div className=" bg-ourcolors-blue border-ourcolors-blue h-12 w-[100%] flex items-center justify-between px-[5%]">
+    <div className=" ml-3 bg-ourcolors-blue border-ourcolors-blue h-12 w-[100%] flex items-center justify-between px-[6%]">
       <Link href={"/toDo"}>
         <Image
           src={"/whiteArrow.svg"}

@@ -38,7 +38,7 @@ const InputTimeEnd = (props: Props) => {
       <Image src={"/timeIcon.svg"} alt={"#"} width={"20"} height={"20"}></Image>
       <label className="flex px-1 text-ourcolors-font" htmlFor="time">
         <p className="px-1"></p>
-        {"End Time"}:{""}
+        {"Duration"}:{""}
       </label>
       <select
         id="time"
