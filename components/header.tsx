@@ -25,7 +25,7 @@ const HeaderClear = ({ currentPage, link, bright }: Props) => {
     profileColor = "white"
   }
   return (
-    <div className=" ml-3 bg-transparent h-12 w-[100%] fixed flex items-center justify-between px-[6%]">
+    <div className=" bg-transparent h-12 w-[100%] fixed flex items-center justify-between px-[5%]">
       {link ? (
         <Link href={link}>
           <Image
@@ -37,7 +37,7 @@ const HeaderClear = ({ currentPage, link, bright }: Props) => {
           ></Image>
         </Link>
       ) : (
-        <div></div>
+        <div className=" h-[21px] w-[33px] bg-transparent"></div>
       )}
       <h1 className={text}>
         {currentPage.charAt(0).toUpperCase() + currentPage.slice(1)}
