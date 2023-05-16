@@ -29,14 +29,14 @@ const DoubleTextInput = (props: Props) => {
   return (
     <div className={`w-full ${props.className}`}>
       <input
-        className="w-full border-ourcolors-fonts border-b-[1px]"
+        className="w-full border-ourcolors-fonts border-b-[1px] focus:outline-none focus:ring-2 focus: ring-ourcolors-white"
         type="text"
         value={props.initialValueTop}
         placeholder={props.topPlaceholder}
         onChange={handleChangeTop}
       />
       <input
-        className="w-full"
+        className="w-full focus:outline-none focus:ring-2 focus: ring-ourcolors-white"
         type="text"
         value={props.initialValueBottom}
         placeholder="Description"

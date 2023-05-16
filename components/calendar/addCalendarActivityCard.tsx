@@ -102,7 +102,7 @@ const AddCalendarActivityCard = ({}) => {
           onChange={handleEndTimeInput}
         />
 
-        <Link href={"/calendar"}>
+        <Link href={"/"}>
           <SmallButton
             className="my-2 mt-3"
             onClick={handleSubmit}

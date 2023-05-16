@@ -44,7 +44,7 @@ const DisplayDashboardToDo = ({ toDo }: Props) => {
 
   const displayTodayTasks = todayTasks.map((item) => (
     <div className="flex items-center " key={item.id}>
-      <div className="flex items-center justify-beginning h-8 mr-[5%]">
+      <div className="flex items-center justify-beginning h-8 mr-[5%] ">
         <input
           className="w-5 "
           type="checkbox"
@@ -60,8 +60,8 @@ const DisplayDashboardToDo = ({ toDo }: Props) => {
   ))
 
   return (
-    <div className="w-full">
-      <div className="mx-[5%] flex justify-between items-center">
+    <div className="w-full ">
+      <div className="mx-[5%] flex justify-between items-center  ">
         <h2 className=" text-hm">Todays Tasks</h2>
         <Link className="text-ourcolors-purple text-hxs" href={"/toDo"}>
           View all

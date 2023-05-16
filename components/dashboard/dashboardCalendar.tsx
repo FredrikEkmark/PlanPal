@@ -29,7 +29,7 @@ const DashboardCalendar: NextPage<Props> = ({ calendar }: Props) => {
 
   return (
     <>
-      <div className="mx-[5%] flex justify-between items-center">
+      <div className="mx-[5%] flex justify-between items-center mt-12">
         <p className="mb-2 text-hm">Calendar</p>
         <Link className="text-ourcolors-purple text-hxs" href={"/calendar"}>
           See full

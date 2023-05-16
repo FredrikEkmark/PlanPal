@@ -25,7 +25,7 @@ const HeaderClear = ({ currentPage, link, bright }: Props) => {
     profileColor = "white"
   }
   return (
-    <div className=" bg-transparent h-12 w-[100%] fixed flex items-center justify-between px-[5%]">
+    <div className=" ml-3 bg-transparent h-12 w-[100%] fixed flex items-center justify-between px-[6%]">
       {link ? (
         <Link href={link}>
           <Image
