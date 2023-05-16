@@ -13,7 +13,7 @@ import { addCalActivFetch } from "@/functions/addCalActivFetch"
 interface Props {}
 
 const AddCalendarActivityCard = ({}) => {
-  const { user, calendar } = useContext(UserContext)
+  const { user, calendar, addCalActivity } = useContext(UserContext)
 
   const [titleInput, setTitleInput] = useState<string>("")
 
@@ -71,8 +71,8 @@ const AddCalendarActivityCard = ({}) => {
       startTime: startTimeInput,
       endTime: endTime,
     }
-    const result = await addCalActivFetch(newActivity, user)
-    console.log(result.success)
+    addCalActivity(user, newActivity)
+    window.location.reload()
   }
   return (
     <div>

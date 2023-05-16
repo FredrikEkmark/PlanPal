@@ -61,6 +61,7 @@ const Index: NextPage<Props> = ({ data }) => {
       setCurrentPage("calendar")
       setUser(data.user)
       setToDo(data.toDo)
+      setCalendar(data.calendar)
     } // set name of folder so navBar know where you are
   )
 
@@ -116,6 +117,8 @@ const Index: NextPage<Props> = ({ data }) => {
 }
 
 export default Index
+
+// start of boilerpalte getServerSideProps
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { req } = context

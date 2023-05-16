@@ -1,7 +1,8 @@
+import { addCalActivFetch } from "@/functions/addCalActivFetch"
 import { addTaskFetch } from "@/functions/addTaskFetch"
 import { deleteTaskFetch } from "@/functions/deleteTaskFetch"
 import { editTaskFetch } from "@/functions/editTaskFetch"
-import { Calendar } from "@/types/calendar"
+import { Activity, Calendar } from "@/types/calendar"
 import { Task } from "@/types/task"
 import { ToDo } from "@/types/toDo"
 import { User } from "@/types/user"
@@ -24,6 +25,7 @@ interface UserContextProps {
   editTask: (task: Task) => void
   deleteTask: (task: Task) => void
   setCalendar: (calendar: Calendar) => void
+  addCalActivity: (user: User, activity: Activity) => void
 }
 
 // Default
@@ -63,6 +65,7 @@ const initialUserContext: UserContextProps = {
   editTask: () => {},
   deleteTask: () => {},
   setCalendar: () => {},
+  addCalActivity: () => {},
 }
 
 export const UserContext = createContext<UserContextProps>(initialUserContext)
@@ -150,6 +153,9 @@ const UserContextProvider: React.FC<UserProviderProps> = ({ children }) => {
           category: updatedCategories,
         }
       })
+    },
+    addCalActivity: async (user, activity) => {
+      const newActivity = await addCalActivFetch(activity, user)
     },
   }
   return <UserContext.Provider value={contextValue} children={children} />
