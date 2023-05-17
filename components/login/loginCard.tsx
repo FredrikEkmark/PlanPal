@@ -36,7 +36,7 @@ const LoginCard = ({}) => {
 
     if (result === undefined) {
       setDisplayError(
-        "The email address and password dose not match! Try again!"
+        "The email address and password does not match! Try again!"
       )
     } else {
       if (result.ok) {
