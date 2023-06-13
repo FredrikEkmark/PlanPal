@@ -108,7 +108,7 @@ const LoginCard = ({}) => {
       </form>
       <div className="fixed flex justify-center w-screen bottom-5 ">
         <p className=" text-hs">
-          Don`&apos;`t have an account? <span> </span>
+          Don&apos;t have an account? <span> </span>
           <Link
             className=" text-ourcolors-purple box-border border-b-2 border-[none] border-solid;"
             href={"/signup"}
