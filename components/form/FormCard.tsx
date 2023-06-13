@@ -4,7 +4,7 @@ import { useState } from "react"
 import Button from "../basic/button"
 import InputText from "../basic/inputText"
 
-const FormCard = ({}) => {
+const FormCard = ({}) => { 
     
   
     const [email, setEmail] = useState("")

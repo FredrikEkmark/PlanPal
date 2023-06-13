@@ -7,10 +7,10 @@ interface Props {}
 const Index: NextPage<Props> = ({}) => {
   return (
     <>
-      <FormCard />
+      <FormCard /> 
     </>
   )
 }
 
 
-export default Form
+export default Form 
